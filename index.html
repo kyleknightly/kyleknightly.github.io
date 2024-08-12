@@ -29,7 +29,7 @@
     <section id="golden_spirals">
         <h2>Golden Spirals</h2>
         <p>To learn how to discover connections between mathematics and nature, I’ll begin with what is probably the most famous example: the golden spiral. Pretend for a moment that you’ve never seen or heard of golden spirals before, and that you don’t know anything about the golden ratio. A good question to ask yourself is “what makes this form special?” The first observation you might make is that the golden spiral is self-similar. If you zoom in or out, nothing really changes. But if you keep looking you’d soon find there are many other self-similar spirals. The golden spiral is just one of a larger set with that property, the logarithmic spirals (fig. 1).</p>
-        <p>So, what makes this particular logarithmic spiral special? One answer could be that it isn’t special–there are many non-golden logarithmic spirals in nature. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, and here’s my best attempt: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
+        <p>So, what makes this <i>particular</i> logarithmic spiral special? One answer could be that it isn’t special–there are many non-golden logarithmic spirals in nature. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, and here’s my best attempt: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
         <p>Stay with me, and try not to worry about what exactly a growth factor of a logarithmic spiral is, for now we’d better worry about what is special about this specific number. We call this number $\varphi$, “phi”,  but what is it really? Luckily there is a beautiful answer. Imagine two line segments, a and b. If you make their lengths so that 
             $ a:b = (a+b):a $
             , then 
@@ -42,7 +42,7 @@
             </p>
         <p>And there is surprising beauty; it is becoming clear that the self similarity of the golden curve supersedes that of any other logarithmic curve, it is the self-similarest! This is a very important discovery, because self-similarity might have seemed to be a binary trait, but it is more comparable to being infinite, where some infinities are larger than others. Connecting certain vertices smoothly inward yields the golden spiral. As promised, we now have a logarithmic spiral with a growth factor of 
             $ \varphi $
-            . We also now have a real idea of what a logarithmic spiral’s growth factor is, which I think is more useful than a purely mathematical definition.
+            . We also now have a <i>real</i> idea of what a logarithmic spiral’s growth factor is, which I think is more useful than a purely mathematical definition.
         </p>
         <p>So, if golden spirals are particularly self-similar, we can rephrase our earlier question as “what is special about self-similarity?”. Imagine you have one of those inner rectangles with dimensions 
             $ 1:\varphi $
@@ -78,17 +78,51 @@
     <section id="patterns">
         <h2>Patterns</h2>
         <h3>Reaction-Diffusion</h3>
-        <p>Alan Turing was a mathematician and computer scientist famous for his contributions to cryptography and historic role in World War II. But two years before his death, he wrote an important paper in the field of mathematical biology, “The Chemical Basis of Morphogenesis”. He was inspired by D’Arcy Thompson’s book, On Growth and Form, which connected mathematics to evolution, and argued for consideration of physical laws in the field of biology as a whole. Turing wondered if the same thing could be done with chemistry, if there were principles of chemical reactions that govern how organisms form (Ball 2015).</p>
+        <p>Alan Turing was a mathematician and computer scientist famous for his contributions to cryptography and historic role in World War II. But two years before his death, he wrote an important paper in the field of mathematical biology, “The Chemical Basis of Morphogenesis”. He was inspired by D’Arcy Thompson’s book, <i>On Growth and Form</i>, which connected mathematics to evolution, and argued for consideration of physical laws in the field of biology as a whole. Turing wondered if the same thing could be done with chemistry, if there were principles of chemical reactions that govern how organisms form (Ball 2015).</p>
         <p>He describes a simplified embryo containing two morphogens, substances with varying physical and chemical properties that interact to determine the physical form of an organism. This definition is intentionally vague, and encapsulates genes, hormones, and even skin pigments (Turing 1952). He does well to describe the long list of limitations of this simplification, but carries on describing how certain properties of these morphogens could result in novel reaction diffusion patterns. The mathematics behind this type of interaction is precise, but quite the opposite to the logistic map in that the equations are complex, and the visual is intuitive (fig. 5).</p>
         <p>This particular simulation uses the Gray-Scott model, a derivative of Turing’s equation developed in the Chemical Basis of Morphogenesis. Turing's model is more general and versatile, capable of producing a wider range of patterns. The Gray-Scott model, being a simplification, is computationally less expensive and has been widely used for simulating pattern formation in reaction-diffusion systems.</p>
         <p>Turing developed the following partial differential equations:
             $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u + f(u,v) $$
             $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + g(u,v) $$
-            where $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor, and the functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model primarily is distinct by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
+            where $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor, and the functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution (like a smudging) of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model primarily is distinct by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
             $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u - uv^2 + F(1-u) $$
             $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + uv^2 - (F+k)v $$
             where the values of r and k can easily be altered to drastically change the behavior of the system, making these equations more approachable to build an understanding.
         </p>    
+        <h3>Conway’s Game of Life</h3>
+        <p>If partial differential equations are outside of your mathematical comfort zone, there is an interestingly related but far simpler model: Conway’s Game of Life. This game can be described with three rules (different rule sets, often with four rules, describe the same game in slightly different ways, so if these are not intuitive the other explanations may be helpful):</p>
+        <ol>
+            <li>A living cell with less than two neighbors dies (starvation)</li>
+            <li>A living cell with more than three neighbors dies (overpopulation)</li>
+            <li>A dead cell with three neighbors comes to life (reproduction)</li>
+        </ol>
+        <p>This game is extremely computationally cheap, unlike reaction-diffusion, and you can play it yourself quite easily with graph paper. This simple game yields surprising complexity, such as gliders that move across the array forever, or growing complexes that never stop.</p>
+        This particular set of cells (fig. 6) would die out in the next iteration, but when you play the game on an infinite array and begin with more complex conditions the similarities to reaction-diffusion become more visual, especially at low values of $r$ under the Gray-Scott model.
+        <h3>Turing Completeness</h3>
+        <p>Reaction-diffusion and the Game of Life differ in that reaction-diffusion reaches a sort of equilibrium, even if the substances never stop moving or interacting. Conway’s Game of Life is different, and you may find that on the millionth iteration the entire infinite plane of cells fizzles out and dies completely. The Game of Life is known to be a “Turing complete” system. This property of the Game of Life was demonstrated by Paul Rendell when he created a pattern known as a "universal constructor" that can be used to simulate any arbitrary cellular automaton, making the Game of Life Turing complete (Rendell 2011). To grossly simplify what this means, the Game of Life can be used to simulate any other Turing machine, which is a simple yet powerful abstract computer. Reaction-diffusion on the other hand is not known to be Turing complete. This hasn’t been proved one way or another, but the stability and predictability of reaction-diffusion is characteristically unlike a Turing machine.</p>
+        <p>Turing completeness is particularly important because of how it relates to our machine conception of the cell. Recall that the two traits of cells that make them non-mechanistic is their self-organization and continuous, undefined function. A Turing complete machine has a very defined function, and runs on iterations of instructions, not continuously. What makes reaction-diffusion promising isn’t that it might be Turing complete, it’s that it might actually be Turing incomplete. Reaction-diffusion is a continuous function, despite being computed in steps. If it was possible to compute with reaction-diffusion, it would be more biological than the computation of Turing machines (although I must admit, who knows what “more biological” even means in this context?).</p>
+    </section>
+    <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>The pattern of thought we first used to understand golden spirals–beginning with understanding the behavior of the mathematics at the simplest possible level, and then exploring the edge cases, where the definitions fail or bleed into others, or where properties emerge and fade away–has useful application in the exploration of other mathematical patterns that are exhibited by living things. While some of these patterns clearly exhibit order, many are chaotic with complex behavior. And yet, the field of chaos theory, and other seemingly obscure topics in mathematics, bring clarity to these situations.</p>
+        <p>Impressive progress in the field of mathematical biology has come from preliminary exploration of other fields, such as physics with Thompson or chemistry with Turing. Surprisingly there don’t seem to have been any real breakthroughs in the past few decades, which to me is a sign that the field is ripe for another expansion into topics in chaos theory, computer science, modern physics, modern mathematics, and so on. I see this as the most promising frontier in modern biology, and yet it is largely out of the limelight of funding and research efforts.</p>
+    </section>
+    <section id="references">
+        <h2>References</h2>
+        <ul>
+            <li>Ball, P. (2015). Forging patterns and making waves from biology to geology: a commentary on Turing (1952) ‘The chemical basis of morphogenesis’ Phil. Trans. R. Soc. B3702014021820140218 http://doi.org/10.1098/rstb.2014.0218</li>
+            <li>Garfinkel, A., Spano ML, Ditto WL, Weiss JN. Controlling cardiac chaos. Science  28 Aug 1992: Vol. 257, Issue 5074, pp. 1230-1235 DOI: 10.1126/science.1519060</li>
+            <li>Hanahan, D., & Weinberg, R. A. (2000). The Hallmarks of Cancer. In Cell (Vol. 100, Issue 1, pp. 57–70). Elsevier BV. https://doi.org/10.1016/s0092-8674(00)81683-9</li>
+            <li>Libchaber A., Laroche C., Fauve S. (1982). Period doubling cascade in mercury, a quantitative measurement. Journal de Physique Lettres, 43 (7), pp.211-216. ff10.1051/jphyslet:01982004307021100ff. ffjpa00232033f</li>
+            <li>May, R. (1976). Simple mathematical models with very complicated dynamics. Nature 261, 459–467 . https://doi.org/10.1038/261459a0</li>
+            <li>May, R. M., Wishart, D. M. G., Bray, J., & Smith, R. L. (1987). Chaos and the Dynamics of Biological Populations [and Discussion]. Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences, 413(1844), 27–44. http://www.jstor.org/stable/2398225</li>
+            <li>Nicholson, DJ. (2019). Is the cell really a machine? J Theor Biol. Sep 21;477:108-126. doi: 10.1016/j.jtbi.2019.06.002. Epub 2019 Jun 4. PMID: 31173758.</li>
+            <li>Rendell, P.W. (2011). A Universal Turing Machine in Conway's Game of Life. 2011 International Conference on High Performance Computing & Simulation, 764-772.</li>
+            <li>Shaw, R. (1984). The Dripping Faucet As A Model Chaotic System.</li>
+            <li>Sims, K. (2022). RD Tool</li>
+            <li>Turing, A. (1952). The chemical basis of morphogenesis. Phil. Trans. R. Soc. Lond. B 237, 37–72. doi:10.1098/rstb.1952.0012</li>
+            
+        </ul>
     </section>
     
     <!-- Additional sections follow the same structure -->
