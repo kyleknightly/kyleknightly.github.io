@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math and Living Things</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="text/javascript">
         window.MathJax = {
@@ -20,7 +21,7 @@
     <header>
         <h1>Math and Living Things</h1>
         <h4>An Exploration of Mathematical Biology</h4>
-        <p><strong>Kyle Knightly</strong></p>
+        <p>Kyle Knightly</p>
     </header>
     <section id="introduction">
         <h2>Introduction</h2>
@@ -69,8 +70,70 @@
             $x_0$
              has no effect on the end behaviors of a population, so for our purposes we can select 
             $ x_0 = 0.3 $
-             for consistency. So, let's investigate the equilibria for aa few values of $r$.
+             for consistency. So, let's investigate the equilibria for a few values of $r$.
         </p>
+        
+        <!-- Div to hold the plot -->
+        <div id="logistic-map" style="width:100%;max-width:700px;height:500px;"></div>
+        <!-- Slider to control r -->
+        <div style="text-align: center; margin-top: 10px;">
+            <input type="range" id="r-slider" min="0" max="4" step="0.01" value="3.0" oninput="updateGraph()" style="width: 50%; max-width: 400px;">
+            <br>
+            <span id="r-value">r = 3.00</span>
+        </div>
+
+        <script>
+            // Function to generate logistic map values
+            function logisticMap(r, x0, iterations) {
+                let x = x0;
+                let values = [x];
+                for (let i = 1; i < iterations; i++) {
+                    x = r * x * (1 - x);
+                    values.push(x);
+                }
+                return values;
+            }
+
+            // Initial parameters
+            let r = 1.0;
+            let x0 = 0.3; // Initial value of x
+            let iterations = 20;
+
+            // Function to update the graph
+            function updateGraph() {
+                r = parseFloat(document.getElementById("r-slider").value);
+                document.getElementById("r-value").textContent = `r = ${r.toFixed(2)}`;
+
+                let yValues = logisticMap(r, x0, iterations);
+                let xValues = Array.from({length: iterations}, (_, i) => i + 1);
+
+                let trace = {
+                    x: xValues,
+                    y: yValues,
+                    mode: 'lines+markers',
+                    type: 'scatter'
+                };
+
+                let layout = {
+                    xaxis: {title: {
+                            text: 'n'  // LaTeX expression for the axis title
+                        }},
+                    yaxis: {title: 'x',
+                            range: [0, 1]},
+                    font: {
+                        family: "'EB Garamond', serif", // Apply this font family to all text elements
+                        size: 14,
+                        color: '#333333'},
+                    margin: { t: 50 }
+                };
+
+                Plotly.newPlot('logistic-map', [trace], layout);
+            }
+
+            // Initial plot
+            updateGraph();
+        </script>
+        <p>At $r=1$ the growth rate is so small that the population dies out rather quickly. At $r=2$ it quickly settles at $x=0.5$, and stays there iteration after iteration. At $r=3$ there is an interesting balance between growth and death, and iterations bounce back and forth between two values. Then, at $r=3.4$ there is another bifurcation, there are 4 relatively stable values that the population bounces around between predictably. But even just $0.1$ units higher, at $r=3.5$, that stability begins to dissolve. And at $r=4$ the pattern is completely lost, and there is no equilibrium at all (fig. 3). In fact, early computers used to use this function to generate pseudorandom numbers. Critically, though, this data will always be the same no matter how many times you run the simulation–these numbers are not actually random at all. There is clearly something interesting going on with equilibria in the logistic map equation, so let’s try plotting the numbers that $x$ “settles” on against different values of $r$.</p>
         <p>This is the logistic map (fig. 4), and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below $r=3$, and then two equilibria until $r=3.5$, where the chaos begins.</p>
         <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984) . Garfinkel et al. demonstrated that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, the researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).
         </p>
