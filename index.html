@@ -6,29 +6,71 @@
     <title>Math and Living Things</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <h1>Math and Living Things</h1>
-        <p>An Exploration of Mathematical Biology</p>
+        <h4>An Exploration of Mathematical Biology</h4>
         <p><strong>Kyle Knightly</strong></p>
     </header>
     <section id="introduction">
         <h2>Introduction</h2>
-        <p>I do not wish to pretend expertise in any of these fields, 
-            but rather to suspend my ignorance and try to find some connections 
-            between them in the meantime. I am writing this as an exploration, 
-            and I welcome and expect corrections on my explanations and speculations. 
-            However, I also aim for this paper to be welcoming to those who shy away 
-            from a paper as soon as mathematics makes its first appearance–my job is 
-            just to share my excitement about math and its connection with living things. 
-            I will begin by explaining fairly simple concepts partially to keep the larger 
-            subject from slipping out from beneath me, but also to establish a method of 
-            building an understanding of the more complicated topics, while discussing 
-            the method’s limitations. Some of these topics are modeled after nature, 
-            elegant explanations of natural phenomena. Others are abstract, where the 
-            math was put first and allowed to think freely.</p>
+        <p>I do not wish to pretend expertise in any of these fields, but rather to suspend my ignorance and try to find some connections between them in the meantime. I am writing this as an exploration, and I welcome and expect corrections on my explanations and speculations. However, I also aim for this paper to be welcoming to those who shy away from a paper as soon as mathematics makes its first appearance–my job is just to share my excitement about math and its connection with living things. I will begin by explaining fairly simple concepts partially to keep the larger subject from slipping out from beneath me, but also to establish a method of building an understanding of the more complicated topics, while discussing the method’s limitations. Some of these topics are modeled after nature, elegant explanations of natural phenomena. Others are abstract, where the math was put first and allowed to think freely.</p>
+    </section>
+    <section id="golden_spirals">
+        <h2>Golden Spirals</h2>
+        <p>To learn how to discover connections between mathematics and nature, I’ll begin with what is probably the most famous example: the golden spiral. Pretend for a moment that you’ve never seen or heard of golden spirals before, and that you don’t know anything about the golden ratio. A good question to ask yourself is “what makes this form special?” The first observation you might make is that the golden spiral is self-similar. If you zoom in or out, nothing really changes. But if you keep looking you’d soon find there are many other self-similar spirals. The golden spiral is just one of a larger set with that property, the logarithmic spirals (fig. 1).</p>
+        <p>So, what makes this particular logarithmic spiral special? One answer could be that it isn’t special–there are many non-golden logarithmic spirals in nature. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, and here’s my best attempt: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
+        <p>Stay with me, and try not to worry about what exactly a growth factor of a logarithmic spiral is, for now we’d better worry about what is special about this specific number. We call this number $\varphi$, “phi”,  but what is it really? Luckily there is a beautiful answer. Imagine two line segments, a and b. If you make their lengths so that 
+            $ a:b = (a+b):a $
+            , then 
+            $ \frac{a}{b}=\varphi $
+            . In other words, try making two numbers where the ratio between them is the same as the ratio between their sum and the larger number. You might then wonder what would happen if you turned those line segments into squares
+            $ A $ and $ B $, 
+            extending their lengths downward. You’d find an empty rectangle under square b with dimensions in proportion 
+            $ a:b $
+            . So, you might try and continue the pattern in that empty rectangle. You’d find that continuing the pattern upside down keeps the empty section facing inward (fig. 2).
+            </p>
+        <p>And there is surprising beauty; it is becoming clear that the self similarity of the golden curve supersedes that of any other logarithmic curve, it is the self-similarest! This is a very important discovery, because self-similarity might have seemed to be a binary trait, but it is more comparable to being infinite, where some infinities are larger than others. Connecting certain vertices smoothly inward yields the golden spiral. As promised, we now have a logarithmic spiral with a growth factor of 
+            $ \varphi $
+            . We also now have a real idea of what a logarithmic spiral’s growth factor is, which I think is more useful than a purely mathematical definition.
+        </p>
+        <p>So, if golden spirals are particularly self-similar, we can rephrase our earlier question as “what is special about self-similarity?”. Imagine you have one of those inner rectangles with dimensions 
+            $ 1:\varphi $
+            . You could then build outward with squares, creating that same pattern as before, forever. If you did have the infinite sequence of squares, any single square you chose would be topologically identical. So, if we think of our placement of proportional squares as a growth algorithm, it is now clear why this type of structure is so inherent to living things. A single, simple growth algorithm can be fetched at any state of the growth sequence.
+        </p>
+    </section>
+    <section id="cells_as_machines">
+        <h2>Cells as Machines</h2>
+        <p>That line of reasoning is very interesting, but equally dangerous. Obviously there is no simple growth algorithm that living things fetch, so before we continue down this road we should recognize its failures. Mechanistic characterization of biology is extremely pronounced and lives at the center of biology’s most active fields such as cancer research (Hanahan et al. 2000). This idea has issues beyond oversimplification, it mischaracterizes biological components from the ground up, leading to a framework of studying biology that is unproductive and misleading (Nicholson 2019).</p>
+        <p>While mathematical biology, the attempt to model living things with mathematical formulas and models, might seem to be an even more extreme case of this fallacy, it is important to pinpoint the specific issue with the machine conception of the cell, and I’ll give you a hint: it certainly isn’t simplification. It really lies in what a machine is–machines are defined by their parts and how they come together, they can be constructed faithfully with a set of instructions. Machines are also highly specialized and constrained in their performance. Machines may also be interrupted, you can take them apart, put them back together, and they should continue moving as before. The contradiction between cells and machines as a metaphor can be boiled down to two traits of cells, their self-organization and continuous undefined function (Nicholson 2019). Additionally, I would argue that a cell cannot be constructed faithfully with a set of instructions. Certainly you’d need more instructions than DNA, but if you reach a point where the instructions required are the positions and velocities of all quantum particles in the cell, we’re really going to have a hard time building it (see discussions on free will and quantum physics for smarter people’s thoughts on this).</p>
+        <p>Mathematical biology certainly has a responsibility to be cautious of these types of fallacies, but it seems to be a promising way out of this misdirection. Our discovery about golden spirals wasn’t really about how living things work, it was about why they are the way they are. Idealization is a clear necessity to science, but it must be done cautiously and for the sake of discovery. When those ideals are too central to our actual perceptions our research can mander down suboptimal paths for decades on end.</p>
+    </section>
+    <section id="bifurcation">
+        <h2>Bifurcation</h2>
+        <p>The logistic map is another example of mathematics that is central to biology, and can be looked at in quite the same way that we analyzed golden spirals. If you have a population with some rate of reproduction, which is proportional to the population size, and some rate of starvation, proportional to the population’s carrying capacity. So, to find a population 
+            $ x_{n+1} $
+             as a proportion of carrying capacity, you could multiply the previous iteration’s population by some growth rate, 
+            $ r $
+            , and constrain the maximum possible population with the term 
+            $ (1-x) $
+            . This equation, 
+            $ x_{n+1} = rx_n(1-x_n) $
+            , is the logistic map. And with different growth rates and initial populations, you can watch as populations evolve over time and settle on equilibria (May 1976). Initial population 
+            $x_0$
+             has no effect on the end behaviors of a population, so for our purposes we can select 
+            $ x_0 = 0.3 $
+             for consistency. So, let's investigate the equilibria for aa few values of $r$.
+        </p>
     </section>
     
     <!-- Additional sections follow the same structure -->
