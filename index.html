@@ -71,6 +71,27 @@
             $ x_0 = 0.3 $
              for consistency. So, let's investigate the equilibria for aa few values of $r$.
         </p>
+        <p>This is the logistic map (fig. 4), and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below $r=3$, and then two equilibria until $r=3.5$, where the chaos begins.</p>
+        <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984) . Garfinkel et al. demonstrated that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, the researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).
+        </p>
+    </section>
+    <section id="patterns">
+        <h2>Patterns</h2>
+        <h3>Reaction-Diffusion</h3>
+        <p>Alan Turing was a mathematician and computer scientist famous for his contributions to cryptography and historic role in World War II. But two years before his death, he wrote an important paper in the field of mathematical biology, “The Chemical Basis of Morphogenesis”. He was inspired by D’Arcy Thompson’s book, On Growth and Form, which connected mathematics to evolution, and argued for consideration of physical laws in the field of biology as a whole. Turing wondered if the same thing could be done with chemistry, if there were principles of chemical reactions that govern how organisms form (Ball 2015).</p>
+        <p>He describes a simplified embryo containing two morphogens, substances with varying physical and chemical properties that interact to determine the physical form of an organism. This definition is intentionally vague, and encapsulates genes, hormones, and even skin pigments (Turing 1952). He does well to describe the long list of limitations of this simplification, but carries on describing how certain properties of these morphogens could result in novel reaction diffusion patterns. The mathematics behind this type of interaction is precise, but quite the opposite to the logistic map in that the equations are complex, and the visual is intuitive (fig. 5).</p>
+        <p>This particular simulation uses the Gray-Scott model, a derivative of Turing’s equation developed in the Chemical Basis of Morphogenesis. Turing's model is more general and versatile, capable of producing a wider range of patterns. The Gray-Scott model, being a simplification, is computationally less expensive and has been widely used for simulating pattern formation in reaction-diffusion systems.</p>
+        <p>Turing developed the following partial differential equations:
+            $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u + f(u,v) $$
+            $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + g(u,v) $$
+            where $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor, and the functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model primarily is distinct by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
+            $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u - uv^2 + F(1-u) $$
+            $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + uv^2 - (F+k)v $$
+            where the values of r and k can easily be altered to drastically change the behavior of the system, making these equations more approachable to build an understanding.
+        </p>
+
+    
+    
     </section>
     
     <!-- Additional sections follow the same structure -->
