@@ -53,3 +53,13 @@ figcaption {
     color: #666;
     margin-top: 10px;
 }
+
+.r-link {
+    /* text-decoration: underline; */
+    color: blue; /* Change the text color */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+
+.r-link:hover {
+    color: darkblue; /* Optional: Change color on hover */
+}

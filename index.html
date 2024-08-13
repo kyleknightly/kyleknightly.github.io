@@ -25,7 +25,7 @@
     </header>
     <section id="introduction">
         <h2>Introduction</h2>
-        <p>I do not wish to pretend expertise in any of these fields, but rather to suspend my ignorance and try to find some connections between them in the meantime. I am writing this as an exploration, and I welcome and expect corrections on my explanations and speculations. However, I also aim for this paper to be welcoming to those who shy away from a paper as soon as mathematics makes its first appearance–my job is just to share my excitement about math and its connection with living things. I will begin by explaining fairly simple concepts partially to keep the larger subject from slipping out from beneath me, but also to establish a method of building an understanding of the more complicated topics, while discussing the method’s limitations. Some of these topics are modeled after nature, elegant explanations of natural phenomena. Others are abstract, where the math was put first and allowed to think freely.</p>
+        <p>I do not wish to pretend expertise in any of these fields, but rather to suspend my ignorance and try to find some connections between them in the meantime. I am writing this as an exploration, and I welcome and expect corrections on my explanations and speculations. However, I also aim for this paper to be welcoming to those who shy away from a paper as soon as mathematics makes its first appearance–my job is just to share my excitement about math and its connection with living things. I will begin by explaining fairly simple concepts partially to keep the larger subject from slipping out from beneath me, but also to establish a method of building an understanding of the more complicated topics. Some of these topics are modeled after nature, elegant explanations of natural phenomena. Others are abstract, where the math was put first and allowed to think freely.</p>
     </section>
     <section id="golden_spirals">
         <h2>Golden Spirals</h2>
@@ -35,11 +35,11 @@
             $ a:b = (a+b):a $
             , then 
             $ \frac{a}{b}=\varphi $
-            . In other words, try making two numbers where the ratio between them is the same as the ratio between their sum and the larger number. You might then wonder what would happen if you turned those line segments into squares
+            . In other words, try making two numbers where the ratio between them is the same as the ratio between their sum and the larger number. Now, imagine turning those line segments into squares 
             $ A $ and $ B $, 
-            extending their lengths downward. You’d find an empty rectangle under square b with dimensions in proportion 
+            extending their lengths downward. You’d find an empty rectangle under square $b$ with dimensions in proportion
             $ a:b $
-            . So, you might try and continue the pattern in that empty rectangle. You’d find that continuing the pattern upside down keeps the empty section facing inward (fig. 2).
+            . Keep going, filling in these remaining rectangles with squares leaving the center empty (fig. 2).
             </p>
         <p>And there is surprising beauty; it is becoming clear that the self similarity of the golden curve supersedes that of any other logarithmic curve, it is the self-similarest! This is a very important discovery, because self-similarity might have seemed to be a binary trait, but it is more comparable to being infinite, where some infinities are larger than others. Connecting certain vertices smoothly inward yields the golden spiral. As promised, we now have a logarithmic spiral with a growth factor of 
             $ \varphi $
@@ -97,7 +97,7 @@
             // Initial parameters
             let r = 1.0;
             let x0 = 0.3; // Initial value of x
-            let iterations = 20;
+            let iterations = 30;
 
             // Function to update the graph
             function updateGraph() {
@@ -132,10 +132,20 @@
 
             // Initial plot
             updateGraph();
+            // Add event listeners to clickable terms
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.r-link').forEach(function(element) {
+                    element.addEventListener('click', function() {
+                        const rValue = parseFloat(this.getAttribute('data-r'));
+                        document.getElementById('r-slider').value = rValue; // Change slider value
+                        updateGraph(); // Update the graph
+                    });
+                });
+            });
         </script>
-        <p>At $r=1$ the growth rate is so small that the population dies out rather quickly. At $r=2$ it quickly settles at $x=0.5$, and stays there iteration after iteration. At $r=3$ there is an interesting balance between growth and death, and iterations bounce back and forth between two values. Then, at $r=3.4$ there is another bifurcation, there are 4 relatively stable values that the population bounces around between predictably. But even just $0.1$ units higher, at $r=3.5$, that stability begins to dissolve. And at $r=4$ the pattern is completely lost, and there is no equilibrium at all (fig. 3). In fact, early computers used to use this function to generate pseudorandom numbers. Critically, though, this data will always be the same no matter how many times you run the simulation–these numbers are not actually random at all. There is clearly something interesting going on with equilibria in the logistic map equation, so let’s try plotting the numbers that $x$ “settles” on against different values of $r$.</p>
-        <p>This is the logistic map (fig. 4), and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below $r=3$, and then two equilibria until $r=3.5$, where the chaos begins.</p>
-        <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984) . Garfinkel et al. demonstrated that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, the researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).
+        <p>At <span class="r-link" data-r="1.0">$r=1$</span> the growth rate is so small that the population dies out rather quickly. At <span class="r-link" data-r="2.0">$r=2$</span> it quickly settles at $x=0.5$, and stays there iteration after iteration. At <span class="r-link" data-r="3.0">$r=3$</span> there is an interesting balance between growth and death, and iterations bounce back and forth between two values. Then, at <span class="r-link" data-r="3.47">$r=3.47$</span> there is another bifurcation, there are 4 relatively stable values that the population bounces around between predictably. But even just $0.1$ units higher, at <span class="r-link" data-r="3.57">$r=3.57$</span>, that stability begins to dissolve. And at <span class="r-link" data-r="4.0">$r=4$</span> the pattern is completely lost, and there is no equilibrium at all. In fact, early computers used to use this function to generate pseudorandom numbers. Critically, though, this data will always be the same no matter how many times you run the simulation–these numbers are not actually random at all. I strongly recommend that you play around with this, scrub through the values and try to find some interesting behaviors. There is clearly something interesting going on with equilibria in the logistic map equation, so let’s try plotting the numbers that $x$ “settles” on against different values of $r$.</p>
+        <p>This is the logistic map (fig. 4), and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below <span class="r-link" data-r="3.0">$r=3$</span>, and then two equilibria until <span class="r-link" data-r="3.5">$r=3.5$</span>, where the chaos begins.</p>
+        <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984). For example, in a famous experiment it was shown that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).
         </p>
     </section>
     <section id="patterns">
@@ -169,6 +179,10 @@
         <h2>Conclusion</h2>
         <p>The pattern of thought we first used to understand golden spirals–beginning with understanding the behavior of the mathematics at the simplest possible level, and then exploring the edge cases, where the definitions fail or bleed into others, or where properties emerge and fade away–has useful application in the exploration of other mathematical patterns that are exhibited by living things. While some of these patterns clearly exhibit order, many are chaotic with complex behavior. And yet, the field of chaos theory, and other seemingly obscure topics in mathematics, bring clarity to these situations.</p>
         <p>Impressive progress in the field of mathematical biology has come from preliminary exploration of other fields, such as physics with Thompson or chemistry with Turing. Surprisingly there don’t seem to have been any real breakthroughs in the past few decades, which to me is a sign that the field is ripe for another expansion into topics in chaos theory, computer science, modern physics, modern mathematics, and so on. I see this as the most promising frontier in modern biology, and yet it is largely out of the limelight of funding and research efforts.</p>
+    </section>
+    <section id="acknowledgements">
+        <h2>Acknowledgements</h2>
+        <p>I would like to sincerely thank Dr. Michael Gustin and Dr. Kathleen Beckingham for their invaluable insight and help proofreading this paper.</p>
     </section>
     <section id="references">
         <h2>References</h2>
