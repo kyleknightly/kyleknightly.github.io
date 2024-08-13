@@ -48,18 +48,37 @@ svg {
     height: auto;
 }
 
-figcaption {
+/* figcaption {
     font-size: 0.9em;
     color: #666;
     margin-top: 10px;
+} */
+
+.image-container {
+    width: 100%;               /* Set the image container to take up the full width of the parent */
+    max-width: 500px;          /* Set a maximum width for the image container */
+    margin: 0 auto;            /* Center the image container */
+    padding: 5px;             /* Add some padding if needed */
+    box-sizing: border-box;    /* Include padding and border in the element's width */
+    text-align: center;        /* Center the figure within the container */
+    display: flex;             /* Use Flexbox to arrange images side by side */
+    flex-direction: row;       /* Ensure the images are aligned horizontally */
+    justify-content: center;   /* Center the images within the container */
+    align-items: center;       /* Align the images vertically */
 }
 
-.r-link {
-    /* text-decoration: underline; */
-    color: blue; /* Change the text color */
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+.image-container img {
+    max-height: 300px;         /* Set a maximum height for the images */
+    height: 100%;              /* Ensure both images have the same height */
+    width: auto;               /* Maintain natural aspect ratio */
+    margin: 5px;            /* Add horizontal space between the images */
 }
 
-.r-link:hover {
-    color: darkblue; /* Optional: Change color on hover */
+figcaption {
+    width: 75%;                /* Set the width of the figcaption */
+    margin: 10px auto;         /* Center the figcaption within its parent */
+    display: block;            /* Ensure the figcaption is treated as a block element */
+    font-size: 14px;           /* Adjust caption font size */
+    color: #555;               /* Caption color */
+    text-align: center;        /* Center the text inside the caption */
 }

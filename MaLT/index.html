@@ -31,7 +31,15 @@
     <section id="golden_spirals">
         <h2>Golden Spirals</h2>
         <p>To learn how to discover connections between mathematics and nature, I’ll begin with what is probably the most famous example: the golden spiral. Pretend for a moment that you’ve never seen or heard of golden spirals before, and that you don’t know anything about the golden ratio. A good question to ask yourself is “what makes this form special?” The first observation you might make is that the golden spiral is self-similar. If you zoom in or out, nothing really changes. But if you keep looking you’d soon find there are many other self-similar spirals. The golden spiral is just one of a larger set with that property, the logarithmic spirals (fig. 1).</p>
-        <p>So, what makes this <i>particular</i> logarithmic spiral special? One answer could be that it isn’t special–there are many non-golden logarithmic spirals in nature. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, and here’s my best attempt: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
+        <div class="image-container">
+            <img src="flower.jpg" alt="Flower">
+            <img src="snail.jpg" alt="Snail">
+        </div>
+        <figcaption><b>Figure 1.</b> Logarithmic spirals in nature exhibited in <i>Aeonium tabuliforme</i> leaves and a snail’s shell.</figcaption>
+        <figcaption>Images: Wikimedia Commons, used under Creative Commons license</figcaption>
+            
+    
+        <p>So, what makes this <i>particular</i> logarithmic spiral special? One answer could be that it isn’t–there are many non-golden logarithmic spirals in nature, in fact the examples in figure 1 are certainly not exactly “golden”. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, and here’s my best attempt: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
         <p>Stay with me, and try not to worry about what exactly a growth factor of a logarithmic spiral is, for now we’d better worry about what is special about this specific number. We call this number $\varphi$, “phi”,  but what is it really? Luckily there is a beautiful answer. Imagine two line segments, a and b. If you make their lengths so that 
             $ a:b = (a+b):a $
             , then 
@@ -145,6 +153,11 @@
             });
         </script>
         <p>At <span class="r-link" data-r="1.0">$r=1$</span> the growth rate is so small that the population dies out rather quickly. At <span class="r-link" data-r="2.0">$r=2$</span> it quickly settles at $x=0.5$, and stays there iteration after iteration. At <span class="r-link" data-r="3.0">$r=3$</span> there is an interesting balance between growth and death, and iterations bounce back and forth between two values. Then, at <span class="r-link" data-r="3.47">$r=3.47$</span> there is another bifurcation, there are 4 relatively stable values that the population bounces around between predictably. But even just $0.1$ units higher, at <span class="r-link" data-r="3.57">$r=3.57$</span>, that stability begins to dissolve. And at <span class="r-link" data-r="4.0">$r=4$</span> the pattern is completely lost, and there is no equilibrium at all. In fact, early computers used to use this function to generate pseudorandom numbers. Critically, though, this data will always be the same no matter how many times you run the simulation–these numbers are not actually random at all. I strongly recommend that you play around with this, scrub through the values and try to find some interesting behaviors. There is clearly something interesting going on with equilibria in the logistic map equation, so let’s try plotting the numbers that $x$ “settles” on against different values of $r$.</p>
+        <div class="image-container">
+            <img src="logisticmap.png" alt="Logistic Map">
+        </div>
+        <figcaption><b>Figure 4.</b> The logistic map, $r\in(2.4, 4.0)$.</figcaption>
+        <figcaption>Image: Wikimedia Commons, used under Creative Commons license</figcaption>
         <p>This is the logistic map (fig. 4), and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below <span class="r-link" data-r="3.0">$r=3$</span>, and then two equilibria until <span class="r-link" data-r="3.5">$r=3.5$</span>, where the chaos begins.</p>
         <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984). For example, in a famous experiment it was shown that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).
         </p>
