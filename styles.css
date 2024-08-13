@@ -1,0 +1,85 @@
+body {
+    font-family: 'EB Garamond', serif;
+    line-height: 1.6;
+    margin: 20px;
+    padding: 20px; /* Adjust the padding value as needed */
+    box-sizing: border-box; /* Ensures padding is included within the width */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+header, footer {
+    text-align: center;
+    padding: 0px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+main h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+figure {
+    text-align: center; /* Center the figure */
+    margin: 20px 0;
+}
+
+svg {
+    display: block; /* Ensures the SVG is treated as a block element */
+    margin: 0 auto; /* Centers the SVG within the figure */
+    max-width: 100%; /* Makes the SVG responsive */
+    height: auto;
+}
+
+figcaption {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+}
+
+.r-link {
+    /* text-decoration: underline; */
+    color: blue; /* Change the text color */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+
+.r-link:hover {
+    color: darkblue; /* Optional: Change color on hover */
+}
+
+/* Basic styling for all <a> tags */
+a {
+    color: black; /* Changes the text color */
+    text-decoration: underline; 
+    font-family: 'EB Garamond', serif; /* Sets the font */
+    font-weight: normal; /* Makes the text bold */
+}
+
+/* Styling for <a> tags when hovered over */
+a:hover {
+    color: darkblue; /* Changes the text color on hover */
+    text-decoration: underline; /* Underlines the text on hover */
+}
+
+/* Styling for <a> tags when clicked (active state) */
+a:active {
+    color: blue; /* Changes the text color when the link is clicked */
+}
+
