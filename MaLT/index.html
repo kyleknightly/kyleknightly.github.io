@@ -48,7 +48,7 @@
 
         <div id="controls">
             <label for="ratio">$a:b=$</label>
-            <input type="range" id="ratio-slider" min="1.1" max="5" step="0.001" value="2.00" oninput="drawSquares(); updateRatioDisplay()">
+            <input type="range" id="ratio-slider" min="1" max="5" step="0.001" value="2.00" oninput="drawSquares(); updateRatioDisplay()">
             <span id="ratio-display">2.000</span>
         </div>
         <canvas id="spiralCanvas"></canvas>
@@ -92,7 +92,9 @@
                     // Update the coordinates and size for the next square
                     switch (i % 4) {
                         case 0: 
+                            ctx.strokeStyle = 'black';
                             ctx.strokeRect(x, y, size, -size);
+                            ctx.strokeStyle = 'red';
                             ctx.beginPath();
                             ctx.arc(x+size, y, size, Math.PI, Math.PI*3/2 ); // Quarter circle from 0 to 90 degrees
                             ctx.stroke();
@@ -101,7 +103,9 @@
                             y -= size;
                             break;
                         case 1: 
+                            ctx.strokeStyle = 'black';
                             ctx.strokeRect(x, y, size, size);
+                            ctx.strokeStyle = 'red';
                             ctx.beginPath();
                             ctx.arc(x, y+size, size, Math.PI*3/2,Math.PI*2 ); // Quarter circle from 0 to 90 degrees
                             ctx.stroke()
@@ -110,7 +114,9 @@
                             y += size;
                             break;
                         case 2: 
+                            ctx.strokeStyle = 'black';
                             ctx.strokeRect(x, y, -size, size);
+                            ctx.strokeStyle = 'red';
                             ctx.beginPath();
                             ctx.arc(x-size, y, size, 0,Math.PI/2 ); // Quarter circle from 0 to 90 degrees
                             ctx.stroke()
@@ -118,7 +124,9 @@
                             y += size;
                             break;
                         case 3: 
+                            ctx.strokeStyle = 'black';
                             ctx.strokeRect(x, y, -size, -size);
+                            ctx.strokeStyle = 'red';
                             ctx.beginPath();
                             ctx.arc(x, y-size, size, Math.PI/2,Math.PI ); // Quarter circle from 0 to 90 degrees
                             ctx.stroke()
@@ -292,7 +300,120 @@
             <li>A dead cell with three neighbors comes to life (reproduction)</li>
         </ol>
         <p>This game is extremely computationally cheap, unlike reaction-diffusion, and you can play it yourself quite easily with graph paper. This simple game yields surprising complexity, such as gliders that move across the array forever, or growing complexes that never stop.</p>
-        This particular set of cells (fig. 6) would die out in the next iteration, but when you play the game on an infinite array and begin with more complex conditions the similarities to reaction-diffusion become more visual, especially at low values of $r$ under the Gray-Scott model.
+        
+        <canvas id="gameCanvas" width="600" height="600"></canvas>
+
+        <div id="controls">
+            <button id="playPauseButton" onclick="togglePlay()">Play</button>
+            <button onclick="clearBoard()">Clear</button>
+        </div>
+
+        <script>
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            const gridSize = 20; // Size of each cell in pixels
+            const rows = canvas.height / gridSize;
+            const cols = canvas.width / gridSize;
+
+            let grid = createEmptyGrid();
+            let interval;
+            let isPlaying = false;
+
+            function createEmptyGrid() {
+                return Array.from({ length: rows }, () => Array(cols).fill(0));
+            }
+
+            function drawGrid() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        ctx.beginPath();
+                        ctx.rect(col * gridSize, row * gridSize, gridSize, gridSize);
+                        ctx.fillStyle = grid[row][col] ? 'black' : 'white';
+                        ctx.fill();
+                        ctx.strokeStyle = '#cccccc'; // Light gray grid lines
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            function updateGrid() {
+                const newGrid = createEmptyGrid();
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const neighbors = countNeighbors(row, col);
+                        if (grid[row][col] === 1) {
+                            newGrid[row][col] = neighbors === 2 || neighbors === 3 ? 1 : 0;
+                        } else {
+                            newGrid[row][col] = neighbors === 3 ? 1 : 0;
+                        }
+                    }
+                }
+                grid = newGrid;
+                drawGrid();
+            }
+
+            function countNeighbors(row, col) {
+                let count = 0;
+                for (let i = -1; i <= 1; i++) {
+                    for (let j = -1; j <= 1; j++) {
+                        if (i === 0 && j === 0) continue;
+                        const newRow = row + i;
+                        const newCol = col + j;
+                        if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+                            count += grid[newRow][newCol];
+                        }
+                    }
+                }
+                return count;
+            }
+
+            function togglePlay() {
+                const button = document.getElementById('playPauseButton');
+                if (isPlaying) {
+                    clearInterval(interval);
+                    button.textContent = "Play";
+                } else {
+                    interval = setInterval(updateGrid, 100);
+                    button.textContent = "Pause";
+                }
+                isPlaying = !isPlaying;
+            }
+
+            function clearBoard() {
+                grid = createEmptyGrid();
+                drawGrid();
+                if (isPlaying) {
+                    togglePlay(); // Automatically pause when clearing the board
+                }
+            }
+
+            canvas.addEventListener('mousedown', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const col = Math.floor(x / gridSize);
+                const row = Math.floor(y / gridSize);
+                grid[row][col] = 1 - grid[row][col]; // Toggle the cell
+                drawGrid();
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (e.buttons === 1) { // Left mouse button is held down
+                    const rect = canvas.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const col = Math.floor(x / gridSize);
+                    const row = Math.floor(y / gridSize);
+                    grid[row][col] = 1;
+                    drawGrid();
+                }
+            });
+
+            drawGrid(); // Initial draw
+        </script>
+        
+        <p>See if you can create something that will sustain itself. Some formations will oscilate between two states eternally, while some will span across the cosmos creating more and more explorers, bound for the abyss. Some, eerily, remain completely still–not dead as far as the rules of the game are concerned, but lifeless, dormant, waiting...</p>
         <h3>Turing Completeness</h3>
         <p>Reaction-diffusion and the Game of Life differ in that reaction-diffusion reaches a sort of equilibrium, even if the substances never stop moving or interacting. Conway’s Game of Life is different, and you may find that on the millionth iteration the entire infinite plane of cells fizzles out and dies completely. The Game of Life is known to be a “Turing complete” system. This property of the Game of Life was demonstrated by Paul Rendell when he created a pattern known as a "universal constructor" that can be used to simulate any arbitrary cellular automaton, making the Game of Life Turing complete (Rendell 2011). To grossly simplify what this means, the Game of Life can be used to simulate any other Turing machine, which is a simple yet powerful abstract computer. Reaction-diffusion on the other hand is not known to be Turing complete. This hasn’t been proved one way or another, but the stability and predictability of reaction-diffusion is characteristically unlike a Turing machine.</p>
         <p>Turing completeness is particularly important because of how it relates to our machine conception of the cell. Recall that the two traits of cells that make them non-mechanistic is their self-organization and continuous, undefined function. A Turing complete machine has a very defined function, and runs on iterations of instructions, not continuously. What makes reaction-diffusion promising isn’t that it might be Turing complete, it’s that it might actually be Turing incomplete. Reaction-diffusion is a continuous function, despite being computed in steps. If it was possible to compute with reaction-diffusion, it would be more biological than the computation of Turing machines (although I must admit, who knows what “more biological” even means in this context?).</p>
@@ -324,7 +445,9 @@
         </ul>
     </section>
     
-    <!-- Additional sections follow the same structure -->
+    <footer>
+        <p>&copy; 2024 Kyle Knightly. All rights reserved. </p>
+    </footer>
     
 </body>
 </html>
