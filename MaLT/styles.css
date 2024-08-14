@@ -64,6 +64,11 @@ svg {
     color: blue; /* Change the text color */
     cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
 }
+#logistic-map {
+    width: 100%;
+    max-width: 700px;
+    height: 50%;
+}
 
 .image-container {
     width: 100%;               /* Set the image container to take up the full width of the parent */
