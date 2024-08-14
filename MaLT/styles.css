@@ -54,6 +54,17 @@ svg {
     margin-top: 10px;
 } */
 
+.r-link {
+    text-decoration: underline; /* Underline the text */
+    color: blue; /* Change the text color */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+.ratio-link {
+    text-decoration: underline; /* Underline the text */
+    color: blue; /* Change the text color */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+
 .image-container {
     width: 100%;               /* Set the image container to take up the full width of the parent */
     max-width: 500px;          /* Set a maximum width for the image container */
@@ -81,4 +92,29 @@ figcaption {
     font-size: 14px;           /* Adjust caption font size */
     color: #555;               /* Caption color */
     text-align: center;        /* Center the text inside the caption */
+}
+
+canvas {
+    margin: 0 auto;            /* Center the image container */
+    padding: 5px;             /* Add some padding if needed */
+    box-sizing: border-box;    /* Include padding and border in the element's width */
+    text-align: center;        /* Center the figure within the container */
+    display: flex;             /* Use Flexbox to arrange images side by side */
+    flex-direction: row;       /* Ensure the images are aligned horizontally */
+    justify-content: center;   /* Center the images within the container */
+    border: 1px solid black;
+    width: 75%;
+}
+#controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#ratio-display {
+    /* margin-top: 10px; */
+    align-items: center;
+    /* margin-bottom: 10px; */
+
 }

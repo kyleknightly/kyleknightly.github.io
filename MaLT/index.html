@@ -30,27 +30,134 @@
     </section>
     <section id="golden_spirals">
         <h2>Golden Spirals</h2>
-        <p>To learn how to discover connections between mathematics and nature, I’ll begin with what is probably the most famous example: the golden spiral. Pretend for a moment that you’ve never seen or heard of golden spirals before, and that you don’t know anything about the golden ratio. A good question to ask yourself is “what makes this form special?” The first observation you might make is that the golden spiral is self-similar. If you zoom in or out, nothing really changes. But if you keep looking you’d soon find there are many other self-similar spirals. The golden spiral is just one of a larger set with that property, the logarithmic spirals (fig. 1).</p>
+        <p>To learn how to discover connections between mathematics and nature, I’ll begin with what is probably the most famous example: the golden spiral. Pretend for a moment that you’ve never seen or heard of golden spirals before, and that you don’t know anything about the golden ratio. A good question to ask yourself is “what makes this thing special?” The first observation you might make is that the golden spiral is self-similar. If you zoom in or out, nothing really changes, you can imagine how you could get lost, not knowing how far in or out you are. But really, the golden spiral is just one of a larger set with that property, the logarithmic spirals (fig. 1).</p>
         <div class="image-container">
             <img src="flower.jpg" alt="Flower">
             <img src="snail.jpg" alt="Snail">
         </div>
         <figcaption><b>Figure 1.</b> Logarithmic spirals in nature exhibited in <i>Aeonium tabuliforme</i> leaves and a snail’s shell.</figcaption>
         <figcaption>Images: Wikimedia Commons, used under Creative Commons license</figcaption>
-            
-    
-        <p>So, what makes this <i>particular</i> logarithmic spiral special? One answer could be that it isn’t–there are many non-golden logarithmic spirals in nature, in fact the examples in figure 1 are certainly not exactly “golden”. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, and here’s my best attempt: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
-        <p>Stay with me, and try not to worry about what exactly a growth factor of a logarithmic spiral is, for now we’d better worry about what is special about this specific number. We call this number $\varphi$, “phi”,  but what is it really? Luckily there is a beautiful answer. Imagine two line segments, a and b. If you make their lengths so that 
+        <p>So, what makes this <i>particular</i> logarithmic spiral special? One answer could be that it isn’t–there are many non-golden logarithmic spirals in nature, in fact the examples in figure 1 certainly aren't exactly “golden”. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, so here it is: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
+        <p>Stay with me, and try not to worry about what exactly a growth factor of a logarithmic spiral is, for now we’d better think about what is special about this specific number. We call this number $\varphi$, “phi”,  but where does it come from? Luckily there is a beautiful answer. Imagine two line segments, a and b. If you choose their lengths so that 
             $ a:b = (a+b):a $
             , then 
             $ \frac{a}{b}=\varphi $
-            . In other words, try making two numbers where the ratio between them is the same as the ratio between their sum and the larger number. Now, imagine turning those line segments into squares 
-            $ A $ and $ B $, 
-            extending their lengths downward. You’d find an empty rectangle under square $b$ with dimensions in proportion
-            $ a:b $
-            . Keep going, filling in these remaining rectangles with squares leaving the center empty (fig. 2).
-            </p>
-        <p>And there is surprising beauty; it is becoming clear that the self similarity of the golden curve supersedes that of any other logarithmic curve, it is the self-similarest! This is a very important discovery, because self-similarity might have seemed to be a binary trait, but it is more comparable to being infinite, where some infinities are larger than others. Connecting certain vertices smoothly inward yields the golden spiral. As promised, we now have a logarithmic spiral with a growth factor of 
+            . In other words, try making two numbers where the ratio between them is the same as the ratio between their sum and the larger number.
+        </p>
+        <p>If you turn those segments into squares $A$ and $B$, you can arrange them together to visualize how good your ratio is. Play around with different ratios and see if you can find gold. In this arrangement, the golden ratio manifests an open space below $B$ that is precisely the same shape as the rectangle surrounding both squares. Then, when the pattern repeats, it fills its own gap endlessly. </p>
+
+        <div id="controls">
+            <label for="ratio">$a:b=$</label>
+            <input type="range" id="ratio-slider" min="1.1" max="5" step="0.001" value="2.00" oninput="drawSquares(); updateRatioDisplay()">
+            <span id="ratio-display">2.000</span>
+        </div>
+        <canvas id="spiralCanvas"></canvas>
+    
+        <script>
+            function updateRatioDisplay() {
+                const ratio = parseFloat(document.getElementById('ratio-slider').value).toFixed(3);
+                document.getElementById('ratio-display').textContent = ratio;
+            }
+    
+            function drawSquares() {
+                const canvas = document.getElementById('spiralCanvas');
+                const ctx = canvas.getContext('2d');
+                const iterations = 30;  // Hardcoded to 10 iterations
+                const ratio = parseFloat(document.getElementById('ratio-slider').value);
+                // Dynamically set canvas size and resolution
+                const width = canvas.clientWidth;
+                const height = canvas.clientWidth*0.66;  // Fixed height
+
+                // Set canvas resolution to match display size
+                canvas.width = width;
+                canvas.height = height;
+    
+                let size = canvas.height*4/5;  // Initial square size
+                let x = canvas.height/10;
+                let y = canvas.height*9/10;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = 'black';
+                ctx.font = "20px 'EB Garamond', serif";  // Set font for labels
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+    
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = 'black';
+    
+                for (let i = 0; i < iterations; i++) {
+                    // Draw the square
+                    ;
+                    
+                    // Update the coordinates and size for the next square
+                    switch (i % 4) {
+                        case 0: 
+                            ctx.strokeRect(x, y, size, -size);
+                            ctx.beginPath();
+                            ctx.arc(x+size, y, size, Math.PI, Math.PI*3/2 ); // Quarter circle from 0 to 90 degrees
+                            ctx.stroke();
+                            if (i === 0) ctx.fillText("A", x + size / 2, y - size / 2);  // Label the first square "A"
+                            x += size;
+                            y -= size;
+                            break;
+                        case 1: 
+                            ctx.strokeRect(x, y, size, size);
+                            ctx.beginPath();
+                            ctx.arc(x, y+size, size, Math.PI*3/2,Math.PI*2 ); // Quarter circle from 0 to 90 degrees
+                            ctx.stroke()
+                            if (i === 1) ctx.fillText("B", x + size / 2, y + size / 2);  // Label the second square "B"
+                            x += size;
+                            y += size;
+                            break;
+                        case 2: 
+                            ctx.strokeRect(x, y, -size, size);
+                            ctx.beginPath();
+                            ctx.arc(x-size, y, size, 0,Math.PI/2 ); // Quarter circle from 0 to 90 degrees
+                            ctx.stroke()
+                            x -= size;
+                            y += size;
+                            break;
+                        case 3: 
+                            ctx.strokeRect(x, y, -size, -size);
+                            ctx.beginPath();
+                            ctx.arc(x, y-size, size, Math.PI/2,Math.PI ); // Quarter circle from 0 to 90 degrees
+                            ctx.stroke()
+                            x -= size;
+                            y -= size;
+                            break;
+                    }
+                    size /= ratio;  // Scale the square size by the ratio
+                    
+                }
+            }
+    
+            // Initial draw
+            drawSquares();
+            document.addEventListener('DOMContentLoaded', function () {
+            // Get all elements with the class 'ratio-link'
+            const ratioLinks = document.querySelectorAll('.ratio-link');
+
+            // Add a click event listener to each link
+            ratioLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    // Get the ratio value from the data attribute
+                    const newRatio = this.getAttribute('data-ratio');
+                    
+                    // Update the slider value
+                    const slider = document.getElementById('ratio-slider');
+                    slider.value = newRatio;
+                    
+                    // Update the display and redraw the canvas
+                    updateRatioDisplay();
+                    drawSquares();
+                });
+            });
+        });
+
+        </script>
+        <figcaption>In all honesty these are just quarter-circles, so these aren't <i>real</i> logarithmic spirals.</figcaption>
+
+        <p>I'm hoping you were able to approximate <span class="ratio-link" data-ratio="1.618">$\varphi$</span>, but if not you can click on the hypelink to a 3-digit approximation. And there is surprising beauty; it is becoming clear that the self similarity of the golden spiral supersedes that of any other logarithmic spiral, it is the self-similarest! This is a very important discovery, because self-similarity might have seemed to be a binary trait where you either have it or you don’t. As promised, we now have a logarithmic spiral with a growth factor of 
             $ \varphi $
             . We also now have a <i>real</i> idea of what a logarithmic spiral’s growth factor is, which I think is more useful than a purely mathematical definition.
         </p>
@@ -61,8 +168,9 @@
     </section>
     <section id="cells_as_machines">
         <h2>Cells as Machines</h2>
-        <p>That line of reasoning is very interesting, but equally dangerous. Obviously there is no simple growth algorithm that living things fetch, so before we continue down this road we should recognize its failures. Mechanistic characterization of biology is extremely pronounced and lives at the center of biology’s most active fields such as cancer research (Hanahan et al. 2000). This idea has issues beyond oversimplification, it mischaracterizes biological components from the ground up, leading to a framework of studying biology that is unproductive and misleading (Nicholson 2019).</p>
-        <p>While mathematical biology, the attempt to model living things with mathematical formulas and models, might seem to be an even more extreme case of this fallacy, it is important to pinpoint the specific issue with the machine conception of the cell, and I’ll give you a hint: it certainly isn’t simplification. It really lies in what a machine is–machines are defined by their parts and how they come together, they can be constructed faithfully with a set of instructions. Machines are also highly specialized and constrained in their performance. Machines may also be interrupted, you can take them apart, put them back together, and they should continue moving as before. The contradiction between cells and machines as a metaphor can be boiled down to two traits of cells, their self-organization and continuous undefined function (Nicholson 2019). Additionally, I would argue that a cell cannot be constructed faithfully with a set of instructions. Certainly you’d need more instructions than DNA, but if you reach a point where the instructions required are the positions and velocities of all quantum particles in the cell, we’re really going to have a hard time building it (see discussions on free will and quantum physics for smarter people’s thoughts on this).</p>
+        <p>That line of reasoning is very interesting, but equally dangerous. Obviously there is no real growth algorithm that living things follow, so before we continue down this road we should recognize its failures. Mechanistic characterization of biology is extremely pronounced and lives at the center of biology’s most active fields such as cancer research (Hanahan et al. 2000). This idea has issues beyond oversimplification, it mischaracterizes biological components from the ground up, leading to a framework of studying biology that is unproductive and misleading (Nicholson 2019).</p>
+        <p>While mathematical biology, the attempt to model living things with mathematical formulas and models, might seem to be an even more extreme case of this fallacy, it is important to pinpoint the specific issue with the machine conception of the cell, and I’ll give you a hint: it certainly isn’t simplification. It really lies in what a machine is–machines are defined by their parts and how they come together, they can be constructed faithfully with a set of instructions. Machines are also highly specialized and constrained in their performance. Machines may also be interrupted, you can take them apart, put them back together, and they should continue moving as before. </p> 
+        <p>The contradiction between cells and machines as a metaphor can be boiled down to two traits of cells, their self-organization and continuous undefined function (Nicholson 2019). Additionally, I would argue that a cell cannot be constructed faithfully with a set of instructions. Certainly you’d need more instructions than DNA, but if you reach a point where the instructions required are the positions and velocities of all quantum particles in the cell, we’re really going to have a hard time building it (see discussions on free will and quantum physics for smarter people’s thoughts on this).</p>
         <p>Mathematical biology certainly has a responsibility to be cautious of these types of fallacies, but it seems to be a promising way out of this misdirection. Our discovery about golden spirals wasn’t really about how living things work, it was about why they are the way they are. Idealization is a clear necessity to science, but it must be done cautiously and for the sake of discovery. When those ideals are too central to our actual perceptions our research can mander down suboptimal paths for decades on end.</p>
     </section>
     <section id="bifurcation">
@@ -78,7 +186,7 @@
             , is the logistic map. And with different growth rates and initial populations, you can watch as populations evolve over time and settle on equilibria (May 1976). Initial population 
             $x_0$
              has no effect on the end behaviors of a population, so for our purposes we can select 
-            $ x_0 = 0.3 $
+            $ x_0 = 0.25 $
              for consistency. So, let's investigate the equilibria for a few values of $r$.
         </p>
         
@@ -86,7 +194,7 @@
         <div id="logistic-map" style="width:100%;max-width:700px;height:500px;"></div>
         <!-- Slider to control r -->
         <div style="text-align: center; margin-top: 10px;">
-            <input type="range" id="r-slider" min="0" max="4" step="0.01" value="3.0" oninput="updateGraph()" style="width: 50%; max-width: 400px;">
+            <input type="range" id="r-slider" min="0" max="3.99" step="0.01" value="3.0" oninput="updateGraph()" style="width: 50%; max-width: 400px;">
             <br>
             <span id="r-value">r = 3.00</span>
         </div>
@@ -105,7 +213,7 @@
 
             // Initial parameters
             let r = 1.0;
-            let x0 = 0.3; // Initial value of x
+            let x0 = 0.25; // Initial value of x
             let iterations = 30;
 
             // Function to update the graph
@@ -152,13 +260,13 @@
                 });
             });
         </script>
-        <p>At <span class="r-link" data-r="1.0">$r=1$</span> the growth rate is so small that the population dies out rather quickly. At <span class="r-link" data-r="2.0">$r=2$</span> it quickly settles at $x=0.5$, and stays there iteration after iteration. At <span class="r-link" data-r="3.0">$r=3$</span> there is an interesting balance between growth and death, and iterations bounce back and forth between two values. Then, at <span class="r-link" data-r="3.47">$r=3.47$</span> there is another bifurcation, there are 4 relatively stable values that the population bounces around between predictably. But even just $0.1$ units higher, at <span class="r-link" data-r="3.57">$r=3.57$</span>, that stability begins to dissolve. And at <span class="r-link" data-r="4.0">$r=4$</span> the pattern is completely lost, and there is no equilibrium at all. In fact, early computers used to use this function to generate pseudorandom numbers. Critically, though, this data will always be the same no matter how many times you run the simulation–these numbers are not actually random at all. I strongly recommend that you play around with this, scrub through the values and try to find some interesting behaviors. There is clearly something interesting going on with equilibria in the logistic map equation, so let’s try plotting the numbers that $x$ “settles” on against different values of $r$.</p>
+        <p>At <span class="r-link" data-r="1.0">$r=1$</span> the growth rate is so small that the population just fizzles out. At <span class="r-link" data-r="2.0">$r=2$</span> it quickly settles at $x=0.5$, and stays there iteration after iteration. At <span class="r-link" data-r="3.1">$r=3.1$</span> there is an interesting balance between growth and death, and iterations bounce back and forth between two values. Then, at <span class="r-link" data-r="3.47">$r=3.47$</span> there is another bifurcation, there are 4 relatively stable values that the population bounces around between predictably. But even just $0.1$ units higher, at <span class="r-link" data-r="3.57">$r=3.57$</span>, that stability begins to dissolve. And at <span class="r-link" data-r="4.0">$r=4$</span> the pattern is completely lost, and there is no equilibrium at all. In fact, early computers used to use this function to generate pseudorandom numbers. Critically, though, this data will always be the same no matter how many times you run the simulation–these numbers are not actually random at all. I strongly recommend that you play around with this, scrub through the values and try to find some interesting behaviors. There is clearly something interesting going on with equilibria in the logistic map equation, so let’s try plotting the numbers that $x$ “settles” on against different values of $r$.</p>
         <div class="image-container">
             <img src="logisticmap.png" alt="Logistic Map">
         </div>
         <figcaption><b>Figure 4.</b> The logistic map, $r\in(2.4, 4.0)$.</figcaption>
         <figcaption>Image: Wikimedia Commons, used under Creative Commons license</figcaption>
-        <p>This is the logistic map (fig. 4), and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below <span class="r-link" data-r="3.0">$r=3$</span>, and then two equilibria until <span class="r-link" data-r="3.5">$r=3.5$</span>, where the chaos begins.</p>
+        <p>This is the logistic map (fig. 4), and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below $r=3$, and then two equilibria until $r=3.5$, where the chaos begins. Note that later, around <span class="r-link" data-r="3.83">$r=3.83$</span>, we once again find some stability. Why is that? If this question doesn't excite you, I dont know what to tell you.</p>
         <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984). For example, in a famous experiment it was shown that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).
         </p>
     </section>
@@ -171,9 +279,9 @@
         <p>Turing developed the following partial differential equations:
             $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u + f(u,v) $$
             $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + g(u,v) $$
-            where $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor, and the functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution (like a smudging) of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model primarily is distinct by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
-            $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u - uv^2 + F(1-u) $$
-            $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + uv^2 - (F+k)v $$
+            Despite their complicated appearence, they're actually quite simple. Basically, you take a distribution of a substance, smudge it around a bit, and then either take some away or add some more. There are two equations because there are two substances, $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor. The functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution (like a smudging) of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model primarily is distinct by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
+            $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u - uv^2 + f(1-u) $$
+            $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + uv^2 - (f+k)v $$
             where the values of r and k can easily be altered to drastically change the behavior of the system, making these equations more approachable to build an understanding.
         </p>    
         <h3>Conway’s Game of Life</h3>
@@ -202,7 +310,7 @@
         <h2>References</h2>
         <ul>
             <li>Ball, P. (2015). Forging patterns and making waves from biology to geology: a commentary on Turing (1952) ‘The chemical basis of morphogenesis’ Phil. Trans. R. Soc. B3702014021820140218 http://doi.org/10.1098/rstb.2014.0218</li>
-            <li>Garfinkel, A., Spano ML, Ditto WL, Weiss JN. Controlling cardiac chaos. Science  28 Aug 1992: Vol. 257, Issue 5074, pp. 1230-1235 DOI: 10.1126/science.1519060</li>
+            <li>Garfinkel, A., Spano ML, Ditto WL, Weiss JN. (1992). Controlling cardiac chaos. Science: Vol. 257, Issue 5074, pp. 1230-1235 DOI: 10.1126/science.1519060</li>
             <li>Hanahan, D., & Weinberg, R. A. (2000). The Hallmarks of Cancer. In Cell (Vol. 100, Issue 1, pp. 57–70). Elsevier BV. https://doi.org/10.1016/s0092-8674(00)81683-9</li>
             <li>Libchaber A., Laroche C., Fauve S. (1982). Period doubling cascade in mercury, a quantitative measurement. Journal de Physique Lettres, 43 (7), pp.211-216. ff10.1051/jphyslet:01982004307021100ff. ffjpa00232033f</li>
             <li>May, R. (1976). Simple mathematical models with very complicated dynamics. Nature 261, 459–467 . https://doi.org/10.1038/261459a0</li>
@@ -210,7 +318,7 @@
             <li>Nicholson, DJ. (2019). Is the cell really a machine? J Theor Biol. Sep 21;477:108-126. doi: 10.1016/j.jtbi.2019.06.002. Epub 2019 Jun 4. PMID: 31173758.</li>
             <li>Rendell, P.W. (2011). A Universal Turing Machine in Conway's Game of Life. 2011 International Conference on High Performance Computing & Simulation, 764-772.</li>
             <li>Shaw, R. (1984). The Dripping Faucet As A Model Chaotic System.</li>
-            <li>Sims, K. (2022). RD Tool</li>
+            <li>Sims, K. (2022). Reaction-Diffusion Tutorial https://karlsims.com/rd.html</li>
             <li>Turing, A. (1952). The chemical basis of morphogenesis. Phil. Trans. R. Soc. Lond. B 237, 37–72. doi:10.1098/rstb.1952.0012</li>
             
         </ul>
