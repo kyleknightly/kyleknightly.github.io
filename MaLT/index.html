@@ -14,6 +14,7 @@
             }
         };
     </script>
+    <script type="text/javascript" src="http://mrdoob.github.com/three.js/build/three.min.js"></script>
     <link rel="icon" href="../favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
@@ -38,12 +39,7 @@
         <figcaption>Logarithmic spirals in nature exhibited in <i>Aeonium tabuliforme</i> leaves and a snail’s shell.</figcaption>
         <figcaption>Images: Wikimedia Commons, used under Creative Commons license</figcaption>
         <p>So, what makes this <i>particular</i> logarithmic spiral special? One answer could be that it isn’t–there are many non-golden logarithmic spirals in nature, in fact the examples above certainly aren't exactly “golden”. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, so here it is: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
-        <p>Stay with me, and try not to worry about what exactly a growth factor of a logarithmic spiral is, for now we’d better think about what is special about this specific number. We call this number $\varphi$, “phi”,  but where does it come from? Luckily there is a beautiful answer. Imagine two line segments, a and b. If you choose their lengths so that 
-            $ a:b = (a+b):a $
-            , then 
-            $ \frac{a}{b}=\varphi $
-            . In other words, try making two numbers where the ratio between them is the same as the ratio between their sum and the larger number.
-        </p>
+        <p>Stay with me, and try not to worry about what exactly a growth factor of a logarithmic spiral is, for now we’d better think about what is special about this specific number. We call this number $\varphi$, “phi”,  but where does it come from? Luckily there is a beautiful answer. Imagine two line segments, a and b. If you choose their lengths so that $ a:b = (a+b):a $, then $ \frac{a}{b}=\varphi $. In other words, try making two numbers where the ratio between them is the same as the ratio between their sum and the larger number.</p>
         <p>If you turn those segments into squares $A$ and $B$, you can arrange them together to visualize how good your ratio is. Play around with different ratios and see if you can find gold. In this arrangement, the golden ratio manifests an open space below $B$ that is precisely the same shape as the rectangle surrounding both squares. Then, when the pattern repeats, it fills its own gap endlessly. </p>
 
         <div id="controls">
@@ -52,127 +48,13 @@
             <span id="ratio-display">2.000</span>
         </div>
         <canvas id="spiralCanvas"></canvas>
+        <script src="spiral.js"></script>
     
-        <script>
-            function updateRatioDisplay() {
-                const ratio = parseFloat(document.getElementById('ratio-slider').value).toFixed(3);
-                document.getElementById('ratio-display').textContent = ratio;
-            }
-    
-            function drawSquares() {
-                const canvas = document.getElementById('spiralCanvas');
-                const ctx = canvas.getContext('2d');
-                const iterations = 30;  // Hardcoded to 10 iterations
-                const ratio = parseFloat(document.getElementById('ratio-slider').value);
-                // Dynamically set canvas size and resolution
-                const width = canvas.clientWidth;
-                const height = canvas.clientWidth*0.66;  // Fixed height
+        
+        <figcaption>I must point out that this is only a stepwise approximation and not a true pure-bred logarithmic spiral, but I'll be controversial and say it doesn't matter for now.</figcaption>
 
-                // Set canvas resolution to match display size
-                canvas.width = width;
-                canvas.height = height;
-    
-                let size = canvas.height*4/5;  // Initial square size
-                let x = canvas.height/10;
-                let y = canvas.height*9/10;
-
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.strokeStyle = 'black';
-                ctx.font = "20px 'EB Garamond', serif";  // Set font for labels
-                ctx.textAlign = "center";
-                ctx.textBaseline = "middle";
-    
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.strokeStyle = 'black';
-    
-                for (let i = 0; i < iterations; i++) {
-                    // Draw the square
-                    ;
-                    
-                    // Update the coordinates and size for the next square
-                    switch (i % 4) {
-                        case 0: 
-                            ctx.strokeStyle = 'black';
-                            ctx.strokeRect(x, y, size, -size);
-                            ctx.strokeStyle = 'red';
-                            ctx.beginPath();
-                            ctx.arc(x+size, y, size, Math.PI, Math.PI*3/2 ); // Quarter circle from 0 to 90 degrees
-                            ctx.stroke();
-                            if (i === 0) ctx.fillText("A", x + size / 2, y - size / 2);  // Label the first square "A"
-                            x += size;
-                            y -= size;
-                            break;
-                        case 1: 
-                            ctx.strokeStyle = 'black';
-                            ctx.strokeRect(x, y, size, size);
-                            ctx.strokeStyle = 'red';
-                            ctx.beginPath();
-                            ctx.arc(x, y+size, size, Math.PI*3/2,Math.PI*2 ); // Quarter circle from 0 to 90 degrees
-                            ctx.stroke()
-                            if (i === 1) ctx.fillText("B", x + size / 2, y + size / 2);  // Label the second square "B"
-                            x += size;
-                            y += size;
-                            break;
-                        case 2: 
-                            ctx.strokeStyle = 'black';
-                            ctx.strokeRect(x, y, -size, size);
-                            ctx.strokeStyle = 'red';
-                            ctx.beginPath();
-                            ctx.arc(x-size, y, size, 0,Math.PI/2 ); // Quarter circle from 0 to 90 degrees
-                            ctx.stroke()
-                            x -= size;
-                            y += size;
-                            break;
-                        case 3: 
-                            ctx.strokeStyle = 'black';
-                            ctx.strokeRect(x, y, -size, -size);
-                            ctx.strokeStyle = 'red';
-                            ctx.beginPath();
-                            ctx.arc(x, y-size, size, Math.PI/2,Math.PI ); // Quarter circle from 0 to 90 degrees
-                            ctx.stroke()
-                            x -= size;
-                            y -= size;
-                            break;
-                    }
-                    size /= ratio;  // Scale the square size by the ratio
-                    
-                }
-            }
-    
-            // Initial draw
-            drawSquares();
-            document.addEventListener('DOMContentLoaded', function () {
-            // Get all elements with the class 'ratio-link'
-            const ratioLinks = document.querySelectorAll('.ratio-link');
-
-            // Add a click event listener to each link
-            ratioLinks.forEach(link => {
-                link.addEventListener('click', function () {
-                    // Get the ratio value from the data attribute
-                    const newRatio = this.getAttribute('data-ratio');
-                    
-                    // Update the slider value
-                    const slider = document.getElementById('ratio-slider');
-                    slider.value = newRatio;
-                    
-                    // Update the display and redraw the canvas
-                    updateRatioDisplay();
-                    drawSquares();
-                });
-            });
-        });
-
-        </script>
-        <figcaption>I must point out that this is only a stepwise approximation, not a true logarithmic spiral.</figcaption>
-
-        <p>I'm hoping you were able to approximate <span class="ratio-link" data-ratio="1.618">$\varphi$</span>, but if not you can click on the hypelink to a 3-digit approximation. And there is surprising beauty; it is becoming clear that the self similarity of the golden spiral supersedes that of any other logarithmic spiral, it is the self-similarest! This is a very important discovery, because self-similarity might have seemed to be a binary trait where you either have it or you don’t. As promised, we now have a logarithmic spiral with a growth factor of 
-            $ \varphi $
-            , but we also now have a <i>real</i> idea of what a logarithmic spiral’s growth factor is, which I think is more useful than a purely mathematical definition.
-        </p>
-        <p>So, if golden spirals are particularly self-similar, we can rephrase our earlier question as “what is special about self-similarity?”. Imagine you have one of those inner rectangles with dimensions 
-            $ 1:\varphi $
-            . You could then build outward with squares, creating that same pattern as before, forever. If you did have the infinite sequence of squares, any single square you chose would be identical. So, if we think of our placement of proportional squares as a growth algorithm, it is now clear why this type of structure is so friendly to living things: a simple step can be followed over and over for controled growth in all directions.
-        </p>
+        <p>I'm hoping you were able to approximate <span class="ratio-link" data-ratio="1.618">$\varphi$</span>, but if not you can click on the hypelink to a 3-digit approximation. And there is surprising beauty; it is becoming clear that the self similarity of the golden spiral supersedes that of any other logarithmic spiral, it is the self-similarest! This is a very important discovery, because self-similarity might have seemed to be a binary trait where you either have it or you don’t. As promised, we now have a logarithmic spiral with a growth factor of $ \varphi $, but we also now have a <i>real</i> idea of what a logarithmic spiral’s growth factor is, which I think is more useful than a purely mathematical definition.</p>
+        <p>So, if golden spirals are particularly self-similar, we can rephrase our earlier question as “what is special about self-similarity?”. Imagine you have one of those inner rectangles with dimensions $ 1:\varphi $. You could then build outward with squares, creating that same pattern as before, forever. If you did have the infinite sequence of squares, any single square you chose would be identical. So, if we think of our placement of proportional squares as a growth algorithm, it is now clear why this type of structure is so friendly to living things: a simple step can be followed over and over for controled growth in all directions.</p>
     </section>
     <section id="cells_as_machines">
         <h2>Cells as Machines</h2>
@@ -183,20 +65,7 @@
     </section>
     <section id="bifurcation">
         <h2>Bifurcation</h2>
-        <p>The logistic map is another example of mathematics that is central to biology, and can be looked at in quite the same way that we analyzed golden spirals. If you have a population with some rate of reproduction, which is proportional to the population size, and some rate of starvation, proportional to the population’s carrying capacity. So, to find a population 
-            $ x_{n+1} $
-             as a proportion of carrying capacity, you could multiply the previous iteration’s population by some growth rate, 
-            $ r $
-            , and constrain the maximum possible population with the term 
-            $ (1-x) $
-            . This equation, 
-            $ x_{n+1} = rx_n(1-x_n) $
-            , is the logistic map. And with different growth rates and initial populations, you can watch as populations evolve over time and settle on equilibria (May 1976). Initial population 
-            $x_0$
-             has no effect on the end behaviors of a population, so for our purposes we can select 
-            $ x_0 = 0.25 $
-             for consistency. So, let's investigate the equilibria for a few values of $r$.
-        </p>
+        <p>The logistic map is another example of mathematics that is central to biology, and can be looked at in quite the same way that we analyzed golden spirals. If you have a population with some rate of reproduction, which is proportional to the population size, and some rate of starvation, proportional to the population’s carrying capacity. So, to find a population $ x_{n+1} $ as a proportion of carrying capacity, you could multiply the previous iteration’s population by some growth rate, $ r $, and constrain the maximum possible population with the term $ (1-x) $. This equation, $ x_{n+1} = rx_n(1-x_n) $, is the logistic map. And with different growth rates and initial populations, you can watch as populations evolve over time and settle on equilibria (May 1976). Initial population $x_0$ has no effect on the end behaviors of a population, so for our purposes we can select $ x_0 = 0.25 $ for consistency. So, let's investigate the equilibria for a few values of $r$.</p>
         
         <!-- Div to hold the plot -->
         <div id="logistic-map"></div>
@@ -206,72 +75,8 @@
             <br>
             <span id="r-value">r = 3.00</span>
         </div>
+        <script src = "logisticmap.js"></script>
 
-        <script>
-            // Function to generate logistic map values
-            function logisticMap(r, x0, iterations) {
-                let x = x0;
-                let values = [x];
-                for (let i = 1; i < iterations; i++) {
-                    x = r * x * (1 - x);
-                    values.push(x);
-                }
-                return values;
-            }
-
-            // Initial parameters
-            let r = 1.0;
-            let x0 = 0.25; // Initial value of x
-            let iterations = 30;
-
-            // Function to update the graph
-            function updateGraph() {
-                r = parseFloat(document.getElementById("r-slider").value);
-                document.getElementById("r-value").textContent = `r = ${r.toFixed(2)}`;
-
-                let yValues = logisticMap(r, x0, iterations);
-                let xValues = Array.from({length: iterations}, (_, i) => i + 1);
-
-                let trace = {
-                    x: xValues,
-                    y: yValues,
-                    mode: 'lines+markers',
-                    type: 'scatter'
-                };
-
-                let layout = {
-                    xaxis: {title: {
-                            text: 'n'  // LaTeX expression for the axis title
-                        }},
-                    yaxis: {title: 'x',
-                            range: [0, 1]},
-                    font: {
-                        family: "'EB Garamond', serif", // Apply this font family to all text elements
-                        size: 14,
-                        color: '#333333'},
-                    margin: { t: 50 }
-                };
-                // Remove the toolbar
-                let config = { displayModeBar: false,
-                    staticPlot: true
-                };
-
-                Plotly.newPlot('logistic-map', [trace], layout, config);
-            }
-
-            // Initial plot
-            updateGraph();
-            // Add event listeners to clickable terms
-            document.addEventListener('DOMContentLoaded', function () {
-                document.querySelectorAll('.r-link').forEach(function(element) {
-                    element.addEventListener('click', function() {
-                        const rValue = parseFloat(this.getAttribute('data-r'));
-                        document.getElementById('r-slider').value = rValue; // Change slider value
-                        updateGraph(); // Update the graph
-                    });
-                });
-            });
-        </script>
         <p>At <span class="r-link" data-r="1.0">$r=1$</span> the growth rate is so small that the population just fizzles out. At <span class="r-link" data-r="2.0">$r=2$</span> it quickly settles at $x=0.5$, and stays there iteration after iteration. At <span class="r-link" data-r="3.1">$r=3.1$</span> there is an interesting balance between growth and death, and iterations bounce back and forth between two values. Then, at <span class="r-link" data-r="3.47">$r=3.47$</span> there is another bifurcation, there are 4 relatively stable values that the population bounces around between predictably. But even just $0.1$ units higher, at <span class="r-link" data-r="3.57">$r=3.57$</span>, that stability begins to dissolve. And at <span class="r-link" data-r="4.0">$r=4$</span> the pattern is completely lost, and there is no equilibrium at all. In fact, early computers used to use this function to generate pseudorandom numbers. Critically, though, this data will always be the same no matter how many times you run the simulation–these numbers are not actually random at all. I strongly recommend that you play around with this, scrub through the values and try to find some interesting behaviors. There is clearly something interesting going on with equilibria in the logistic map equation, so let’s try plotting the numbers that $x$ “settles” on against different values of $r$.</p>
         <div class="image-container">
             <img src="logisticmap.png" alt="Logistic Map">
@@ -280,16 +85,16 @@
         <figcaption>Image: Wikimedia Commons, used under Creative Commons license</figcaption>
         <p>This is the logistic map, and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below $r=3$, and then two equilibria until $r=3.5$, where the chaos begins. Note that later, around <span class="r-link" data-r="3.83">$r=3.83$</span>, we once again find some stability. What is going on with that?</p>
         <p>A good question to ask is if we can predict when this map splits into two. In 1975 the mathematical physicist Mitchell Feigenbaum discovered that these bifurcations occur more and more rapidly, each one coming approximately 4.669 times sooner than the last. Refinement of the mathematics led to the discovery that this ratio, much like the golden ratio, is a transcendental number. That means exactly what it sounds like: a beautiful, irrational number that comes out of thin air, a gift from the universe.</p>
-        <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984). For example, in a famous experiment it was shown that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).
-        </p>
+        <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984). For example, in a famous experiment it was shown that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).</p>
     </section>
     <section id="patterns">
         <h2>Patterns</h2>
         <h3>Reaction-Diffusion</h3>
         <p>Alan Turing was a mathematician and computer scientist famous for his contributions to cryptography and historic role in World War II. But two years before his death, he wrote an important paper in the field of mathematical biology, “The Chemical Basis of Morphogenesis”. He was inspired by D’Arcy Thompson’s book, <i>On Growth and Form</i>, which connected mathematics to evolution, and argued for consideration of physical laws in the field of biology as a whole. Turing wondered if the same thing could be done with chemistry, if there were principles of chemical reactions that govern how organisms form (Ball 2015).</p>
         <p>He describes a simplified embryo containing two morphogens, substances with varying physical and chemical properties that interact to determine the physical form of an organism. This definition is intentionally vague, and encapsulates genes, hormones, and even skin pigments (Turing 1952). He does well to describe the long list of limitations of this simplification, but carries on describing how certain properties of these morphogens could result in novel reaction diffusion patterns. The mathematics behind this type of interaction is precise, but quite the opposite to the logistic map in that the visual is more intuitive than the equations.</p>
+
         <div class="image-container">
-            <img src="gray-scott.png" alt="Reaction-Diffusion">
+            <img type=module src="gray-scott.png" alt="Reaction-Diffusion">
         </div>
         <figcaption>Reaction-diffusion simulation using the Gray-Scott model with $r=0.6$ and $k=0.6$.</figcaption>
         <figcaption>Visualized using <a href = "https://www.karlsims.com/rdtool" target="_blank">RD Tool</a> (Sims 2022).</figcaption>
@@ -319,129 +124,7 @@
             <button onclick="clearBoard()">Clear</button>
         </div>
 
-        <script>
-            const canvas = document.getElementById('gameCanvas');
-            const ctx = canvas.getContext('2d');
-            const gridSize = 20; // Size of each cell in pixels
-            const rows = canvas.height / gridSize;
-            const cols = canvas.width / gridSize;
-
-            let grid = createEmptyGrid();
-            let interval;
-            let isPlaying = false;
-
-            // Initialize the grid with a glider
-            function createEmptyGrid() {
-                const newGrid = Array.from({ length: rows }, () => Array(cols).fill(0));
-                // Glider pattern
-                newGrid[1][2] = 1;
-                newGrid[2][3] = 1;
-                newGrid[3][1] = 1;
-                newGrid[3][2] = 1;
-                newGrid[3][3] = 1;
-
-                newGrid[16][16] = 1;
-                newGrid[17][17] = 1;
-                newGrid[15][17] = 1;
-                newGrid[17][18] = 1;
-                newGrid[15][18] = 1;
-                newGrid[16][19] = 1;
-                return newGrid;
-            }
-
-            function drawGrid() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (let row = 0; row < rows; row++) {
-                    for (let col = 0; col < cols; col++) {
-                        ctx.beginPath();
-                        ctx.rect(col * gridSize, row * gridSize, gridSize, gridSize);
-                        ctx.fillStyle = grid[row][col] ? 'black' : 'white';
-                        ctx.fill();
-                        ctx.strokeStyle = '#cccccc'; // Light gray grid lines
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            function updateGrid() {
-                const newGrid = createEmptyGrid();
-                for (let row = 0; row < rows; row++) {
-                    for (let col = 0; col < cols; col++) {
-                        const neighbors = countNeighbors(row, col);
-                        if (grid[row][col] === 1) {
-                            newGrid[row][col] = neighbors === 2 || neighbors === 3 ? 1 : 0;
-                        } else {
-                            newGrid[row][col] = neighbors === 3 ? 1 : 0;
-                        }
-                    }
-                }
-                grid = newGrid;
-                drawGrid();
-            }
-
-            function countNeighbors(row, col) {
-                let count = 0;
-                for (let i = -1; i <= 1; i++) {
-                    for (let j = -1; j <= 1; j++) {
-                        if (i === 0 && j === 0) continue;
-                        const newRow = row + i;
-                        const newCol = col + j;
-                        if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
-                            count += grid[newRow][newCol];
-                        }
-                    }
-                }
-                return count;
-            }
-
-            function togglePlay() {
-                const button = document.getElementById('playPauseButton');
-                if (isPlaying) {
-                    clearInterval(interval);
-                    button.textContent = "Play";
-                } else {
-                    interval = setInterval(updateGrid, 100);
-                    button.textContent = "Pause";
-                }
-                isPlaying = !isPlaying;
-            }
-
-            function clearBoard() {
-                grid = createEmptyGrid();
-                drawGrid();
-                if (isPlaying) {
-                    togglePlay(); // Automatically pause when clearing the board
-                }
-            }
-
-            canvas.addEventListener('mousedown', (e) => {
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const col = Math.floor(x / gridSize);
-                const row = Math.floor(y / gridSize);
-                if (row >= 0 && row < rows && col >= 0 && col < cols) {
-                    grid[row][col] = 1 - grid[row][col]; // Toggle the cell
-                    drawGrid();
-                }
-            });
-
-            canvas.addEventListener('mousemove', (e) => {
-                if (e.buttons === 1) { // Left mouse button is held down
-                    const rect = canvas.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const col = Math.floor(x / gridSize);
-                    const row = Math.floor(y / gridSize);
-                    if (row >= 0 && row < rows && col >= 0 && col < cols && grid[row][col] === 0) {
-                        grid[row][col] = 1;
-                        drawGrid();
-                    }
-                }
-            });
-
-            drawGrid(); // Initial draw
-        </script>
+        <script src="gameoflife.js"></script>
         
         <p>See if you can create something that will sustain itself. Some formations will oscilate between two states eternally, while some will span across the cosmos creating more and more explorers, bound for the abyss. Some, eerily, remain completely still–not dead as far as the rules of the game are concerned, but lifeless, dormant, waiting...</p>
         <h3>Turing Completeness</h3>
