@@ -26,18 +26,18 @@
     </header>
     <section id="introduction">
         <h2>Introduction</h2>
-        <p>I do not wish to pretend expertise in any of these fields, but rather to suspend my ignorance and try to find some connections between them in the meantime. I am writing this as an exploration, and I welcome and expect corrections on my explanations and speculations. However, I also aim for this paper to be welcoming to those who shy away from a paper as soon as mathematics makes its first appearance–my job is just to share my excitement about math and its connection with living things. I will begin by explaining fairly simple concepts partially to keep the larger subject from slipping out from beneath me, but also to establish a method of building an understanding of the more complicated topics. Some of these topics are modeled after nature, elegant explanations of natural phenomena. Others are abstract, where the math was put first and allowed to think freely.</p>
+        <p>I do not wish to pretend expertise in any of these fields, but rather to suspend my ignorance and try to find some connections between them in the meantime. I am writing this as an exploration, and I welcome and expect corrections on my explanations and speculations. However, I also welcome those who shy away from a paper as soon as mathematics makes its first appearance–my job is just to share my excitement about math and its connection with living things. I will begin by explaining fairly simple concepts, partially to keep the larger subject from slipping out from beneath me, but also to establish a method of building an understanding of the more complicated topics. Some of these topics are modeled after nature, elegant explanations of natural phenomena. Others are abstract, where the math was put first and allowed to think freely.</p>
     </section>
     <section id="golden_spirals">
         <h2>Golden Spirals</h2>
-        <p>To learn how to discover connections between mathematics and nature, I’ll begin with what is probably the most famous example: the golden spiral. Pretend for a moment that you’ve never seen or heard of golden spirals before, and that you don’t know anything about the golden ratio. A good question to ask yourself is “what makes this thing special?” The first observation you might make is that the golden spiral is self-similar. If you zoom in or out, nothing really changes, you can imagine how you could get lost, not knowing how far in or out you are. But really, the golden spiral is just one of a larger set with that property, the logarithmic spirals (fig. 1).</p>
+        <p>To learn how to discover connections between mathematics and nature, I’ll begin with what is probably the most famous example: the golden spiral. Pretend for a moment that you’ve never seen or heard of golden spirals before, and that you don’t know anything about the golden ratio. A good question to ask yourself is “what makes this thing special?” The first observation you might make is that the golden spiral is self-similar. If you zoom in or out, nothing really changes, you can imagine how you could get lost, not knowing how far in or out you are. But really, the golden spiral is just one of a larger set with that property, the logarithmic spirals.</p>
         <div class="image-container">
             <img src="flower.jpg" alt="Flower">
             <img src="snail.jpg" alt="Snail">
         </div>
-        <figcaption><b>Figure 1.</b> Logarithmic spirals in nature exhibited in <i>Aeonium tabuliforme</i> leaves and a snail’s shell.</figcaption>
+        <figcaption>Logarithmic spirals in nature exhibited in <i>Aeonium tabuliforme</i> leaves and a snail’s shell.</figcaption>
         <figcaption>Images: Wikimedia Commons, used under Creative Commons license</figcaption>
-        <p>So, what makes this <i>particular</i> logarithmic spiral special? One answer could be that it isn’t–there are many non-golden logarithmic spirals in nature, in fact the examples in figure 1 certainly aren't exactly “golden”. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, so here it is: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
+        <p>So, what makes this <i>particular</i> logarithmic spiral special? One answer could be that it isn’t–there are many non-golden logarithmic spirals in nature, in fact the examples above certainly aren't exactly “golden”. But to faithfully attempt to answer the question we should try to precisely define a golden spiral, so here it is: a golden spiral is a logarithmic spiral with a growth factor of $ \frac{1+\sqrt{5}}{2} $. </p>
         <p>Stay with me, and try not to worry about what exactly a growth factor of a logarithmic spiral is, for now we’d better think about what is special about this specific number. We call this number $\varphi$, “phi”,  but where does it come from? Luckily there is a beautiful answer. Imagine two line segments, a and b. If you choose their lengths so that 
             $ a:b = (a+b):a $
             , then 
@@ -163,7 +163,7 @@
         });
 
         </script>
-        <figcaption>In all honesty these are just quarter-circles, so these aren't <i>real</i> logarithmic spirals.</figcaption>
+        <figcaption>I must point out that this is only a stepwise approximation, not a true logarithmic spiral.</figcaption>
 
         <p>I'm hoping you were able to approximate <span class="ratio-link" data-ratio="1.618">$\varphi$</span>, but if not you can click on the hypelink to a 3-digit approximation. And there is surprising beauty; it is becoming clear that the self similarity of the golden spiral supersedes that of any other logarithmic spiral, it is the self-similarest! This is a very important discovery, because self-similarity might have seemed to be a binary trait where you either have it or you don’t. As promised, we now have a logarithmic spiral with a growth factor of 
             $ \varphi $
@@ -176,9 +176,9 @@
     </section>
     <section id="cells_as_machines">
         <h2>Cells as Machines</h2>
-        <p>That line of reasoning is very interesting, but equally dangerous. Obviously there is no real growth algorithm that living things follow, so before we continue down this road we should recognize its failures. Mechanistic characterization of biology is extremely pronounced, and it lives at the center of biology’s most active and most funded fields such as cancer research (Hanahan et al. 2000). This idea has issues beyond oversimplification, it mischaracterizes biological components from the ground up, leading to a framework of studying biology that is unproductive and misleading (Nicholson 2019).</p>
+        <p>That line of reasoning is very interesting, but equally dangerous. Obviously there is no real "growth algorithm" that living things follow, so before we continue down this road we should recognize its failures. Mechanistic characterization of biology is extremely pronounced, and it lives at the center of biology’s most active and most funded fields such as cancer research (Hanahan et al. 2000). This idea has issues beyond oversimplification, it mischaracterizes biological components from the ground up, leading to a framework of studying biology that is unproductive and misleading (Nicholson 2019).</p>
         <p>While mathematical biology, the attempt to model living things with mathematical formulas and models, might seem to be an even more extreme case of this fallacy, it is important to pinpoint the specific issue with the machine conception of the cell, and I’ll give you a hint: it certainly isn’t simplification. It really lies in what a machine is–machines are defined by their parts and how they come together, they can be constructed faithfully with a set of instructions. Machines are also highly specialized and constrained in their performance. Machines may also be interrupted, you can take them apart, put them back together, and they should continue moving as before. </p> 
-        <p>The contradiction between cells and machines as a metaphor can be boiled down to two traits of cells, their self-organization and continuous undefined function (Nicholson 2019). Additionally, I would argue that a cell cannot be constructed faithfully with a set of instructions. Certainly you’d need more instructions than DNA, but if you reach a point where the instructions required are the positions and velocities of all quantum particles in the cell, we’re really going to have a hard time building it (see discussions on free will and quantum physics for smarter people’s thoughts on this).</p>
+        <p>The contradiction between cells and machines as a metaphor can be boiled down to two traits of cells, their self-organization and continuous undefined function (Nicholson 2019). Additionally, I would argue that a cell cannot be constructed faithfully with a set of instructions. Certainly you’d need more instructions than DNA, but if you reach a point where the instructions required are the positions and velocities of all quantum particles in the cell, we’re really going to have a hard time building it.</p>
         <p>Mathematical biology certainly has a responsibility to be cautious of these types of fallacies, but it seems to be a promising way out of this misdirection. Our discovery about golden spirals wasn’t really about how living things work at all, it was the characterization of a form (a good thing) and then conjuring up an anthropocentric explanation for it (not so good). Idealization is a clear necessity to science, but it must be done cautiously and for the sake of discovery. When those ideals are too central to our actual perceptions our research can mander down suboptimal paths for decades on end.</p>
     </section>
     <section id="bifurcation">
@@ -251,8 +251,12 @@
                         color: '#333333'},
                     margin: { t: 50 }
                 };
+                // Remove the toolbar
+                let config = { displayModeBar: false,
+                    staticPlot: true
+                };
 
-                Plotly.newPlot('logistic-map', [trace], layout);
+                Plotly.newPlot('logistic-map', [trace], layout, config);
             }
 
             // Initial plot
@@ -272,9 +276,10 @@
         <div class="image-container">
             <img src="logisticmap.png" alt="Logistic Map">
         </div>
-        <figcaption><b>Figure 4.</b> The logistic map, $r\in(2.4, 4.0)$.</figcaption>
+        <figcaption>The logistic map, $x_0=0.25, r\in(2.4, 4.0)$.</figcaption>
         <figcaption>Image: Wikimedia Commons, used under Creative Commons license</figcaption>
-        <p>This is the logistic map (fig. 4), and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below $r=3$, and then two equilibria until $r=3.5$, where the chaos begins. Note that later, around <span class="r-link" data-r="3.83">$r=3.83$</span>, we once again find some stability. Why is that? If this question doesn't excite you, I dont know what to tell you.</p>
+        <p>This is the logistic map, and it is a fractal pattern riddled with areas of seemingly random complexity and sudden order. Comparing this to our data, we see a single equilibrium below $r=3$, and then two equilibria until $r=3.5$, where the chaos begins. Note that later, around <span class="r-link" data-r="3.83">$r=3.83$</span>, we once again find some stability. What is going on with that?</p>
+        <p>A good question to ask is if we can predict when this map splits into two. In 1975 the mathematical physicist Mitchell Feigenbaum discovered that these bifurcations occur more and more rapidly, each one coming approximately 4.669 times sooner than the last. Refinement of the mathematics led to the discovery that this ratio, much like the golden ratio, is a transcendental number. That means exactly what it sounds like: a beautiful, irrational number that comes out of thin air, a gift from the universe.</p>
         <p>The logistic map, and chaotic bifurcation patterns in general, exist as clearly in nature as the golden spiral. In real organism populations as well as thermodynamics, fluid dynamics, and cardiology there have been clearly demonstrated bifurcation patterns that lead to chaotic behavior, much like the logistic map (Garfinkel et al. 1992, Libchaber et al. 1982, Shaw 1984). For example, in a famous experiment it was shown that as a rabbit heart undergoes fibrillation, there is a period doubling in heartbeat that eventually leads to death. Using chaos theory, researchers determined optimal times to apply electrical shocks to the rabbits, returning their heartbeats to periodicity with some success (Garfinkel et al. 1992).
         </p>
     </section>
@@ -283,6 +288,12 @@
         <h3>Reaction-Diffusion</h3>
         <p>Alan Turing was a mathematician and computer scientist famous for his contributions to cryptography and historic role in World War II. But two years before his death, he wrote an important paper in the field of mathematical biology, “The Chemical Basis of Morphogenesis”. He was inspired by D’Arcy Thompson’s book, <i>On Growth and Form</i>, which connected mathematics to evolution, and argued for consideration of physical laws in the field of biology as a whole. Turing wondered if the same thing could be done with chemistry, if there were principles of chemical reactions that govern how organisms form (Ball 2015).</p>
         <p>He describes a simplified embryo containing two morphogens, substances with varying physical and chemical properties that interact to determine the physical form of an organism. This definition is intentionally vague, and encapsulates genes, hormones, and even skin pigments (Turing 1952). He does well to describe the long list of limitations of this simplification, but carries on describing how certain properties of these morphogens could result in novel reaction diffusion patterns. The mathematics behind this type of interaction is precise, but quite the opposite to the logistic map in that the visual is more intuitive than the equations.</p>
+        <div class="image-container">
+            <img src="gray-scott.png" alt="Reaction-Diffusion">
+        </div>
+        <figcaption>Reaction-diffusion simulation using the Gray-Scott model with $r=0.6$ and $k=0.6$.</figcaption>
+        <figcaption>Visualized using <a href = "https://www.karlsims.com/rdtool" target="_blank">RD Tool</a> (Sims 2022).</figcaption>
+
         <p>This particular simulation uses the Gray-Scott model, a derivative of Turing’s equation developed in the Chemical Basis of Morphogenesis. Turing's model is more general and versatile, capable of producing a wider range of patterns. The Gray-Scott model, being a simplification, is computationally less expensive and has been widely used for simulating pattern formation in reaction-diffusion systems.</p>
         <p>Turing developed the following partial differential equations:
             $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u + f(u,v) $$
@@ -290,7 +301,7 @@
             Despite their complicated appearence, they're actually quite simple. Basically, you take a distribution of a substance, smudge it around a bit, and then either take some away or add some more. There are two equations because there are two substances, $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor. The functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution (like a smudging) of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model primarily is distinct by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
             $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u - uv^2 + f(1-u) $$
             $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + uv^2 - (f+k)v $$
-            where the values of r and k can easily be altered to drastically change the behavior of the system, making these equations more approachable to build an understanding.
+            The values of r and k can easily be altered to drastically change the behavior of the system, making these equations more approachable to build an understanding.
         </p>    
         <h3>Conway’s Game of Life</h3>
         <p>If partial differential equations are outside of your mathematical comfort zone, there is an interestingly related but far simpler model: Conway’s Game of Life. This game can be described with three rules (different rule sets, often with four rules, describe the same game in slightly different ways, so if these are not intuitive the other explanations may be helpful):</p>
@@ -319,8 +330,23 @@
             let interval;
             let isPlaying = false;
 
+            // Initialize the grid with a glider
             function createEmptyGrid() {
-                return Array.from({ length: rows }, () => Array(cols).fill(0));
+                const newGrid = Array.from({ length: rows }, () => Array(cols).fill(0));
+                // Glider pattern
+                newGrid[1][2] = 1;
+                newGrid[2][3] = 1;
+                newGrid[3][1] = 1;
+                newGrid[3][2] = 1;
+                newGrid[3][3] = 1;
+
+                newGrid[16][16] = 1;
+                newGrid[17][17] = 1;
+                newGrid[15][17] = 1;
+                newGrid[17][18] = 1;
+                newGrid[15][18] = 1;
+                newGrid[16][19] = 1;
+                return newGrid;
             }
 
             function drawGrid() {
@@ -394,8 +420,10 @@
                 const y = e.clientY - rect.top;
                 const col = Math.floor(x / gridSize);
                 const row = Math.floor(y / gridSize);
-                grid[row][col] = 1 - grid[row][col]; // Toggle the cell
-                drawGrid();
+                if (row >= 0 && row < rows && col >= 0 && col < cols) {
+                    grid[row][col] = 1 - grid[row][col]; // Toggle the cell
+                    drawGrid();
+                }
             });
 
             canvas.addEventListener('mousemove', (e) => {
@@ -405,8 +433,10 @@
                     const y = e.clientY - rect.top;
                     const col = Math.floor(x / gridSize);
                     const row = Math.floor(y / gridSize);
-                    grid[row][col] = 1;
-                    drawGrid();
+                    if (row >= 0 && row < rows && col >= 0 && col < cols && grid[row][col] === 0) {
+                        grid[row][col] = 1;
+                        drawGrid();
+                    }
                 }
             });
 
