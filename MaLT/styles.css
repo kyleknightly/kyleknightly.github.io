@@ -72,7 +72,7 @@ svg {
 
 .image-container {
     width: 100%;               /* Set the image container to take up the full width of the parent */
-    max-width: 500px;          /* Set a maximum width for the image container */
+    max-width: 70%;          /* Set a maximum width for the image container */
     margin: 0 auto;            /* Center the image container */
     padding: 5px;             /* Add some padding if needed */
     box-sizing: border-box;    /* Include padding and border in the element's width */
@@ -87,6 +87,7 @@ svg {
     max-height: 300px;         /* Set a maximum height for the images */
     height: 100%;              /* Ensure both images have the same height */
     width: auto;               /* Maintain natural aspect ratio */
+    max-width: 100%;
     margin: 5px;            /* Add horizontal space between the images */
 }
 

@@ -89,27 +89,8 @@
     </section>
     <section id="patterns">
         <h2>Patterns</h2>
-        <h3>Reaction-Diffusion</h3>
-        <p>Alan Turing was a mathematician and computer scientist famous for his contributions to cryptography and historic role in World War II. But two years before his death, he wrote an important paper in the field of mathematical biology, “The Chemical Basis of Morphogenesis”. He was inspired by D’Arcy Thompson’s book, <i>On Growth and Form</i>, which connected mathematics to evolution, and argued for consideration of physical laws in the field of biology as a whole. Turing wondered if the same thing could be done with chemistry, if there were principles of chemical reactions that govern how organisms form (Ball 2015).</p>
-        <p>He describes a simplified embryo containing two morphogens, substances with varying physical and chemical properties that interact to determine the physical form of an organism. This definition is intentionally vague, and encapsulates genes, hormones, and even skin pigments (Turing 1952). He does well to describe the long list of limitations of this simplification, but carries on describing how certain properties of these morphogens could result in novel reaction diffusion patterns. The mathematics behind this type of interaction is precise, but quite the opposite to the logistic map in that the visual is more intuitive than the equations.</p>
-
-        <div class="image-container">
-            <img type=module src="gray-scott.png" alt="Reaction-Diffusion">
-        </div>
-        <figcaption>Reaction-diffusion simulation using the Gray-Scott model with $r=0.6$ and $k=0.6$.</figcaption>
-        <figcaption>Visualized using <a href = "https://www.karlsims.com/rdtool" target="_blank">RD Tool</a> (Sims 2022).</figcaption>
-
-        <p>This particular simulation uses the Gray-Scott model, a derivative of Turing’s equation developed in the Chemical Basis of Morphogenesis. Turing's model is more general and versatile, capable of producing a wider range of patterns. The Gray-Scott model, being a simplification, is computationally less expensive and has been widely used for simulating pattern formation in reaction-diffusion systems.</p>
-        <p>Turing developed the following partial differential equations:
-            $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u + f(u,v) $$
-            $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + g(u,v) $$
-            Despite their complicated appearence, they're actually quite simple. Basically, you take a distribution of a substance, smudge it around a bit, and then either take some away or add some more. There are two equations because there are two substances, $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor. The functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution (like a smudging) of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model primarily is distinct by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
-            $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u - uv^2 + f(1-u) $$
-            $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + uv^2 - (f+k)v $$
-            The values of r and k can easily be altered to drastically change the behavior of the system, making these equations more approachable to build an understanding.
-        </p>    
         <h3>Conway’s Game of Life</h3>
-        <p>If partial differential equations are outside of your mathematical comfort zone, there is an interestingly related but far simpler model: Conway’s Game of Life. This game can be described with three rules (different rule sets, often with four rules, describe the same game in slightly different ways, so if these are not intuitive the other explanations may be helpful):</p>
+        <p>I want to show you a different type of simulation, something that was described by its creator as a "zero player game." It can be described with three rules (different rule sets, often with four rules, describe the same game in slightly different ways, so if these are not intuitive the other explanations may be helpful): </p>
         <ol>
             <li>A living cell with less than two neighbors dies (starvation)</li>
             <li>A living cell with more than three neighbors dies (overpopulation)</li>
@@ -126,10 +107,34 @@
 
         <script src="gameoflife.js"></script>
         
-        <p>See if you can create something that will sustain itself. Some formations will oscilate between two states eternally, while some will span across the cosmos creating more and more explorers, bound for the abyss. Some, eerily, remain completely still–not dead as far as the rules of the game are concerned, but lifeless, dormant, waiting...</p>
+        <p>See if you can create something that will sustain itself. Some formations will oscilate between two states eternally, while some will span across the cosmos creating more and more explorers, bound for the abyss. Some, eerily, remain completely still–not <i>dead</i> as far as the rules of the game are concerned, but lifeless, dormant.</p>
+        <p>This game is called a "cellular automata," and there are endless examples of their fascinating behaviors, but rather than dive down that rabbit hole I want to make a connection to something a lot less intuitive than our simple rule set. Remember, living things don't like to follow rules.</p>
+        
+        
+        <h3>Reaction-Diffusion</h3>
+        <p>Alan Turing was a mathematician and computer scientist famous for his contributions to cryptography and historic role in World War II. But two years before his death, he wrote an important paper in the field of mathematical biology, “The Chemical Basis of Morphogenesis”. He was inspired by D’Arcy Thompson’s book, <i>On Growth and Form</i>, which connected mathematics to evolution, and argued for consideration of physical laws in the field of biology as a whole. Turing wondered if the same thing could be done with chemistry, if there were principles of chemical reactions that govern how organisms form (Ball 2015).</p>
+        <p>He describes a simplified embryo containing two morphogens, substances with varying physical and chemical properties that interact to determine the physical form of an organism. This definition is intentionally vague, and encapsulates genes, hormones, and even skin pigments (Turing 1952). He does well to describe the long list of limitations of this simplification, but carries on describing how certain properties of these morphogens could result in novel reaction diffusion patterns. The mathematics behind this type of interaction is precise, but quite the opposite to the logistic map in that the visual is more intuitive than the equations.</p>
+
+        <div class="image-container">
+            <img type=module src="gray-scott.png" alt="Reaction-Diffusion">
+        </div>
+        <figcaption>Reaction-diffusion simulation using the Gray-Scott model with $r=0.6$ and $k=0.6$.</figcaption>
+        <figcaption>Visualized using <a href = "https://www.karlsims.com/rdtool" target="_blank">RD Tool</a> (Sims 2022).</figcaption>
+
+        <p>Soak in these images, you can intuitively see how the black substance grows and spreads, folds inwards and oozes outwards. This particular simulation uses the Gray-Scott model, a derivative of Turing’s equation developed in the Chemical Basis of Morphogenesis. Turing's model is more general and versatile, capable of producing a wider range of patterns. The Gray-Scott model, being a simplification, is computationally less expensive and has been widely used for simulating pattern formation in reaction-diffusion systems.</p>
+        <p>Turing developed the following partial differential equations:
+            $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u + f(u,v) $$
+            $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + g(u,v) $$
+            Despite their complicated appearence, they're actually quite simple. Basically, you take a distribution of a substance, smudge it around a bit, and then either take some away or add some more. There are two equations because there are two substances, $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor. The functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution (like a smudging) of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model primarily is distinct by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
+            $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u - uv^2 + f(1-u) $$
+            $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + uv^2 - (f+k)v $$
+            The values of r and k can easily be altered to drastically change the behavior of the system, making these equations more approachable to build an understanding.
+        </p>    
+        <p>I strongly urge you to play around with Karl Sims' simulation of the Gray-Scott model, <a href = "https://www.karlsims.com/rdtool" target="_blank">RD Tool</a>. I would have embedded a simulation here, but to be completely honest I couldn't have done nearly as good of a job, his simulation is a true work of art.</p>
         <h3>Turing Completeness</h3>
         <p>Reaction-diffusion and the Game of Life differ in that reaction-diffusion reaches a sort of equilibrium, even if the substances never stop moving or interacting. Conway’s Game of Life is different, and you may find that on the millionth iteration the entire infinite plane of cells fizzles out and dies completely. The Game of Life is known to be a “Turing complete” system. This property of the Game of Life was demonstrated by Paul Rendell when he created a pattern known as a "universal constructor" that can be used to simulate any arbitrary cellular automaton, making the Game of Life Turing complete (Rendell 2011). To grossly simplify what this means, the Game of Life can be used to simulate any other Turing machine, which is a simple yet powerful abstract computer. Reaction-diffusion on the other hand is not known to be Turing complete. This hasn’t been proved one way or another, but the stability and predictability of reaction-diffusion is characteristically unlike a Turing machine.</p>
         <p>Turing completeness is particularly important because of how it relates to our machine conception of the cell. Recall that the two traits of cells that make them non-mechanistic is their self-organization and continuous, undefined function. A Turing complete machine has a very defined function, and runs on iterations of instructions, not continuously. What makes reaction-diffusion promising isn’t that it might be Turing complete, it’s that it might actually be Turing incomplete. Reaction-diffusion is a continuous function, despite being computed in steps. If it was possible to compute with reaction-diffusion, it would be more biological than the computation of Turing machines (although I must admit, who knows what “more biological” even means in this context?).</p>
+    
     </section>
     <section id="conclusion">
         <h2>Conclusion</h2>
