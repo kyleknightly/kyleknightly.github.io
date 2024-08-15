@@ -72,7 +72,7 @@ svg {
 
 .image-container {
     width: 100%;               /* Set the image container to take up the full width of the parent */
-    max-width: 70%;          /* Set a maximum width for the image container */
+    max-width: 100%;          /* Set a maximum width for the image container */
     margin: 0 auto;            /* Center the image container */
     padding: 5px;             /* Add some padding if needed */
     box-sizing: border-box;    /* Include padding and border in the element's width */
@@ -92,7 +92,7 @@ svg {
 }
 
 figcaption {
-    width: 75%;                /* Set the width of the figcaption */
+    width: 70%;                /* Set the width of the figcaption */
     margin: 10px auto;         /* Center the figcaption within its parent */
     display: block;            /* Ensure the figcaption is treated as a block element */
     font-size: 14px;           /* Adjust caption font size */
