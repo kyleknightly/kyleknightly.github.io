@@ -1,0 +1,132 @@
+body {
+    font-family: 'EB Garamond', serif;
+    line-height: 1.6;
+    margin: 20px;
+    padding: 20px; /* Adjust the padding value as needed */
+    box-sizing: border-box; /* Ensures padding is included within the width */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+header, footer {
+    text-align: center;
+    padding: 0px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+main h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+figure {
+    text-align: center; /* Center the figure */
+    margin: 20px 0;
+}
+
+svg {
+    display: block; /* Ensures the SVG is treated as a block element */
+    margin: 0 auto; /* Centers the SVG within the figure */
+    max-width: 100%; /* Makes the SVG responsive */
+    height: auto;
+}
+
+/* figcaption {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+} */
+
+.r-link {
+    text-decoration: underline; /* Underline the text */
+    color: blue; /* Change the text color */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+.ratio-link {
+    text-decoration: underline; /* Underline the text */
+    color: blue; /* Change the text color */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
+#logistic-map {
+    width: 100%;
+    max-width: 700px;
+    height: 50%;
+}
+
+.image-container {
+    width: 100%;               /* Set the image container to take up the full width of the parent */
+    max-width: 100%;          /* Set a maximum width for the image container */
+    margin: 0 auto;            /* Center the image container */
+    padding: 5px;             /* Add some padding if needed */
+    box-sizing: border-box;    /* Include padding and border in the element's width */
+    text-align: center;        /* Center the figure within the container */
+    display: flex;             /* Use Flexbox to arrange images side by side */
+    flex-direction: row;       /* Ensure the images are aligned horizontally */
+    justify-content: center;   /* Center the images within the container */
+    align-items: center;       /* Align the images vertically */
+}
+
+.image-container img {
+    max-height: 300px;         /* Set a maximum height for the images */
+    height: 100%;              /* Ensure both images have the same height */
+    width: auto;               /* Maintain natural aspect ratio */
+    max-width: 100%;
+    margin: 5px;            /* Add horizontal space between the images */
+}
+
+figcaption {
+    width: 70%;                /* Set the width of the figcaption */
+    margin: 10px auto;         /* Center the figcaption within its parent */
+    display: block;            /* Ensure the figcaption is treated as a block element */
+    font-size: 14px;           /* Adjust caption font size */
+    color: #555;               /* Caption color */
+    text-align: center;        /* Center the text inside the caption */
+}
+
+canvas {
+    margin: 0 auto;            /* Center the image container */
+    padding: 5px;             /* Add some padding if needed */
+    box-sizing: border-box;    /* Include padding and border in the element's width */
+    text-align: center;        /* Center the figure within the container */
+    display: flex;             /* Use Flexbox to arrange images side by side */
+    flex-direction: row;       /* Ensure the images are aligned horizontally */
+    justify-content: center;   /* Center the images within the container */
+    border: 1px solid black;
+    width: 75%;
+}
+#controls {
+    display: flex;
+    font-family: 'EB Garamond', serif;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+button {
+    margin: 10px;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold
+}
+#ratio-display {
+    /* margin-top: 10px; */
+    align-items: center;
+    /* margin-bottom: 10px; */
+
+}
