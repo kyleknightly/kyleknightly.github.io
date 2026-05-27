@@ -202,5 +202,11 @@ window.addEventListener("mouseleave", () => {
     mouseInside = false;
 });
 
+window.addEventListener("pageshow", event => {
+    if (event.persisted) {
+        window.location.reload();
+    }
+});
+
 resize();
 animate();
