@@ -5,6 +5,8 @@ body {
     min-height: 100vh;
     text-align: justify;
     overflow: hidden;
+    position: relative;
+    isolation: isolate;
 }
 
 header, footer {
@@ -92,7 +94,7 @@ html, body {
     inset: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 0;
+    z-index: -1;
     background: white;
 }
 
