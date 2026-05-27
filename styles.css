@@ -1,13 +1,10 @@
 body {
     font-family: 'EB Garamond', serif;
     line-height: 1.6;
-    margin: 20px;
-    padding: 20px; /* Adjust the padding value as needed */
     box-sizing: border-box; /* Ensures padding is included within the width */
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    min-height: 100vh;
     text-align: justify;
+    overflow: hidden;
 }
 
 header, footer {
@@ -74,7 +71,7 @@ a {
 
 /* Styling for <a> tags when hovered over */
 a:hover {
-    color: darkblue; /* Changes the text color on hover */
+    color: white; /* Changes the text color on hover */
     text-decoration: underline; /* Underlines the text on hover */
 }
 
@@ -83,3 +80,65 @@ a:active {
     color: blue; /* Changes the text color when the link is clicked */
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: white;
+}
+
+#rd-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background: white;
+}
+
+header {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    pointer-events: none;
+}
+
+header a {
+    pointer-events: auto;
+}
+
+.link-boxes {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px; /* space before the next <p> */
+    pointer-events: auto;
+}
+
+.link-boxes a {
+    color: black;
+    text-decoration: none;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+
+    border: 1px solid black;
+    padding: 4px 12px;
+    display: inline-block;
+
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.link-boxes a:hover {
+    color: white;
+    border-color: white;
+    text-decoration: none;
+}
+
+.link-boxes a:active {
+    color: blue;
+    border-color: blue;
+}

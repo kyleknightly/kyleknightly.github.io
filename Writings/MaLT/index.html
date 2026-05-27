@@ -25,9 +25,14 @@
         <h4>An Exploration of Mathematical Biology</h4>
         <p>Kyle Knightly</p>
     </header>
-    <section id="introduction">
+    <section id="authors_note">
+        <h2>Author's Note</h2>
+        <p>I wrote this two months into my study of mathematical biology and one semester into my study of higher mathematics, so please take everything written here with a grain of salt, especially my explanation of reaction-diffusion (i.e. forgive my stupidity and note my humility).</p>
+
+    </section>
+    <!-- <section id="introduction">
         <h2>Introduction</h2>
-        <p>I do not wish to pretend expertise in any of these fields, but rather to suspend my ignorance and try to find some connections between them in the meantime. I am writing this as an exploration, and I welcome and expect corrections on my explanations and speculations. However, I also welcome those who shy away from a paper as soon as mathematics makes its first appearance–my job is just to share my excitement about math and its connection with living things. I will begin by explaining fairly simple concepts, partially to keep the larger subject from slipping out from beneath me, but also to establish a method of building an understanding of the more complicated topics. Some of these topics are modeled after nature, elegant explanations of natural phenomena. Others are abstract: the math was put first and allowed to think freely.</p>
+        <p>I do not wish to pretend expertise in any of these fields, but rather to suspend my ignorance and try to find some connections between them in the meantime. I am writing this as an exploration, and I welcome and expect corrections on my explanations and speculations. However, I also welcome those who shy away from a paper as soon as mathematics makes its first appearance–my job is just to share my excitement about math and its connection with living things. I will begin by explaining fairly simple concepts, partially to keep the larger subject from slipping out from beneath me, but also to establish a method of building an understanding of the more complicated topics. Some of these topics are modeled after nature, elegant explanations of natural phenomena. Others are abstract: the math was put first and allowed to think freely.</p> -->
     </section>
     <section id="golden_spirals">
         <h2>Golden Spirals</h2>
@@ -126,7 +131,7 @@
         <p>Turing developed the following partial differential equations:
             $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u + f(u,v) $$
             $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + g(u,v) $$
-            Despite their complicated appearance, they're actually quite simple. Take a distribution of a substance, smudge it around a bit, and then either take some away or add some more. There are two equations because there are two substances, $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor. The functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) terms are similar to a convolution (like a smudging) of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model distinguishes itself by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
+            Despite their complicated appearance, they're actually quite simple. Take a distribution of a substance, smudge it around a bit, and then either take some away or add some more. There are two equations because there are two substances, $u$ is an autocatalyst (self-producer) and $v$ is an inhibitor. The functions $f$ and $g$ determine how the neighboring concentration of one substance influences the other, and the laplacian ($\nabla^2$) operators are similar to a convolution (like a smudging) of a particle of the substance, with the result dependent on the neighboring particles’ identities. The Gray-Scott model distinguishes itself by the chosen behavior of the autocatalyst and inhibitor. In Turing’s equations, the autocatalyst promotes growth of both substances, and the inhibitor inhibits the growth of both substances. In the Gray-Scott model the autocatalyst promotes its own growth, consuming the inhibitor. The inhibitor is added at rate r and the autocatalyst must be removed at rate k to keep the reaction going. The mathematics look quite similar:
             $$ \frac{\partial u}{\partial t} = D_u \nabla^2 u - uv^2 + f(1-u) $$
             $$ \frac{\partial v}{\partial t} = D_v \nabla^2 v + uv^2 - (f+k)v $$
             The values of r and k can easily be altered to drastically change the behavior of the system, making these equations more approachable to build an understanding.

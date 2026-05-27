@@ -1,0 +1,7 @@
+body {
+    font-family: 'EB Garamond', serif;
+    line-height: 1.6;
+    box-sizing: border-box; /* Ensures padding is included within the width */
+    min-height: 100vh;
+    text-align: justify;
+}

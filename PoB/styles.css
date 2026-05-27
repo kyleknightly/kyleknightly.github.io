@@ -1,132 +1,201 @@
 body {
-    font-family: 'EB Garamond', serif;
-    line-height: 1.6;
-    margin: 20px;
-    padding: 20px; /* Adjust the padding value as needed */
-    box-sizing: border-box; /* Ensures padding is included within the width */
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: justify;
+  font-family: 'EB Garamond', serif;
+  line-height: 1.6;
+  box-sizing: border-box;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+  color: #000;
+  background: #fff;
+  text-align: justify;
 }
 
-header, footer {
-    text-align: center;
-    padding: 0px;
+header,
+footer {
+  text-align: center;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
+header {
+  margin-bottom: 36px;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 10px;
+h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.15;
 }
 
-main h2 {
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
-    margin-top: 30px;
+h2 {
+  margin: 0 0 14px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ddd;
+  font-size: 1.35rem;
 }
 
 p {
-    margin-bottom: 20px;
+  margin: 0 0 20px;
 }
 
-figure {
-    text-align: center; /* Center the figure */
-    margin: 20px 0;
+section {
+  margin-top: 30px;
 }
 
-svg {
-    display: block; /* Ensures the SVG is treated as a block element */
-    margin: 0 auto; /* Centers the SVG within the figure */
-    max-width: 100%; /* Makes the SVG responsive */
-    height: auto;
+button,
+input,
+textarea {
+  font: inherit;
 }
 
-/* figcaption {
-    font-size: 0.9em;
-    color: #666;
-    margin-top: 10px;
-} */
-
-.r-link {
-    text-decoration: underline; /* Underline the text */
-    color: blue; /* Change the text color */
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-}
-.ratio-link {
-    text-decoration: underline; /* Underline the text */
-    color: blue; /* Change the text color */
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-}
-#logistic-map {
-    width: 100%;
-    max-width: 700px;
-    height: 50%;
-}
-
-.image-container {
-    width: 100%;               /* Set the image container to take up the full width of the parent */
-    max-width: 100%;          /* Set a maximum width for the image container */
-    margin: 0 auto;            /* Center the image container */
-    padding: 5px;             /* Add some padding if needed */
-    box-sizing: border-box;    /* Include padding and border in the element's width */
-    text-align: center;        /* Center the figure within the container */
-    display: flex;             /* Use Flexbox to arrange images side by side */
-    flex-direction: row;       /* Ensure the images are aligned horizontally */
-    justify-content: center;   /* Center the images within the container */
-    align-items: center;       /* Align the images vertically */
-}
-
-.image-container img {
-    max-height: 300px;         /* Set a maximum height for the images */
-    height: 100%;              /* Ensure both images have the same height */
-    width: auto;               /* Maintain natural aspect ratio */
-    max-width: 100%;
-    margin: 5px;            /* Add horizontal space between the images */
-}
-
-figcaption {
-    width: 70%;                /* Set the width of the figcaption */
-    margin: 10px auto;         /* Center the figcaption within its parent */
-    display: block;            /* Ensure the figcaption is treated as a block element */
-    font-size: 14px;           /* Adjust caption font size */
-    color: #555;               /* Caption color */
-    text-align: center;        /* Center the text inside the caption */
-}
-
-canvas {
-    margin: 0 auto;            /* Center the image container */
-    padding: 5px;             /* Add some padding if needed */
-    box-sizing: border-box;    /* Include padding and border in the element's width */
-    text-align: center;        /* Center the figure within the container */
-    display: flex;             /* Use Flexbox to arrange images side by side */
-    flex-direction: row;       /* Ensure the images are aligned horizontally */
-    justify-content: center;   /* Center the images within the container */
-    border: 1px solid black;
-    width: 75%;
-}
-#controls {
-    display: flex;
-    font-family: 'EB Garamond', serif;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-bottom: 20px;
-}
 button {
-    margin: 10px;
-    font-family: 'EB Garamond', serif;
-    font-weight: bold
+  min-width: 76px;
+  border: 0;
+  border-radius: 0;
+  padding: 5px 12px;
+  color: #000;
+  background: transparent;
+  cursor: pointer;
 }
-#ratio-display {
-    /* margin-top: 10px; */
-    align-items: center;
-    /* margin-bottom: 10px; */
 
+button:hover:not(:disabled),
+button:focus-visible {
+  text-decoration: underline;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.icon-button {
+  min-width: 42px;
+  width: 42px;
+  height: 34px;
+  padding: 0;
+  line-height: 1;
+  text-align: center;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: darkblue;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 132px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  resize: vertical;
+  background: transparent;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+textarea:focus-visible {
+  outline: 1px dotted #666;
+  outline-offset: 4px;
+}
+
+input[type="file"] {
+  max-width: 100%;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.transport,
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.status {
+  min-height: 1.6em;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.file {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.file + .tools {
+  margin-bottom: 18px;
+}
+
+.record-indicator {
+  min-width: 76px;
+  text-align: left;
+}
+
+.record-indicator.active::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  margin-right: 0.45em;
+  border-radius: 50%;
+  background: #000;
+  vertical-align: 0.03em;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.trim {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.trim label {
+  display: grid;
+  gap: 4px;
+}
+
+footer {
+  margin-top: 38px;
+}
+
+@media (max-width: 620px) {
+  body {
+    padding-inline: 16px;
+  }
+
+  .trim {
+    grid-template-columns: 1fr;
+  }
+
+  button {
+    min-width: 88px;
+  }
+
+  .icon-button {
+    min-width: 42px;
+  }
 }

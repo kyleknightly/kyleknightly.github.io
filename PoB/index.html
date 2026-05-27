@@ -1,27 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist of Babel</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/javascript">
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-            }
-        };
-    </script>
-    <script type="text/javascript" src="http://mrdoob.github.com/three.js/build/three.min.js"></script>
-    <link rel="icon" href="../favicon.png" type="image/png">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Babbling of Babel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="babel.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Work in progress</h1>
-    </header>
+  <header>
+    <h1>Playlist of Babel</h1>
+    <p>A playlist of everything.</p>
+  </header>
+
+  <main>
+    <section aria-label="playback">
+      <div class="transport">
+        <button id="previous" class="icon-button" type="button" aria-label="skip backward">←</button>
+        <button id="playPause" class="icon-button" type="button" aria-label="play">▶</button>
+        <button id="next" class="icon-button" type="button" aria-label="skip forward">→</button>
+      </div>
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section aria-labelledby="trackHeading">
+      <h2 id="trackHeading">Track</h2>
+      <textarea id="seed" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+      <div class="tools">
+        <button id="goSeed" type="button">go</button>
+        <button id="copySeed" type="button">copy</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="uploadHeading">
+      <h2 id="uploadHeading">Upload</h2>
+      <label class="file">
+        <input id="file" type="file" accept="audio/*">
+      </label>
+
+      <div class="tools">
+        <button id="record" type="button">record 5s</button>
+        <span id="recordIndicator" class="record-indicator" aria-live="polite"></span>
+      </div>
+
+      <div class="trim">
+        <label>
+          <span>start <output id="startLabel">0.00</output>s</span>
+          <input id="start" type="range" min="0" max="0" step="0.01" value="0" disabled>
+        </label>
+        <label>
+          <span>length <output id="lengthLabel">5.00</output>s</span>
+          <input id="length" type="range" min="0.01" max="5" step="0.01" value="5" disabled>
+        </label>
+      </div>
+
+      <div class="tools">
+        <button id="preview" type="button" disabled>preview</button>
+        <button id="encode" type="button" disabled>search</button>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
